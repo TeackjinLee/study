@@ -37,7 +37,20 @@ dependencies {
     // 개발용으로 충분하다.
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    // implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    // mybatis
+    // jdbc로 처리 하는 상당 부분의 코드, parameter settings, result등을 매핑하도록 도와 준다
+    // - MyBatis-Srping 라이브러리를 통해 MyBatis가 Spring Transaction에 쉽게 연동 될 수 있다.
+    implementation "org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2"
+    // mysql 8.0
+    implementation 'mysql:mysql-connector-java:8.0.33'
+    // mariaDB 3.1
+    implementation 'org.mariadb.jdbc:mariadb-java-client:3.1.4'
+
+    // Hikari
+//    compileOnly('javax.servlet:javax.servlet-api:4.0.1')
+//    implementation group: 'com.zaxxer', name: 'HikariCP', version:'5.1.0'
 }
 
 tasks.named('test') {
