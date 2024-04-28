@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @RestController
-public class testController {
+public class TestController {
     @Autowired
     TestService testService;
 
