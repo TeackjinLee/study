@@ -48,6 +48,8 @@ dependencies {
     // mariaDB 3.1
     implementation 'org.mariadb.jdbc:mariadb-java-client:3.1.4'
 
+    // jdbc 로그 설정
+    implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
 }
 
 tasks.named('test') {
