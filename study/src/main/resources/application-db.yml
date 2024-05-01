@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:mysql://localhost:3306/test?characterEncoding=UTF-8&serverTimezone=UTC
+    hikari:
+      username: root
+      password: 123123123
+      maximum-pool-size: 10
+      connection-test-query: SELECT 1
+  data:
+    redis:
+      port: 8080
+      host: localhost
+
+jwt:
+  secret: ee.ff
+

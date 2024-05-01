@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    include:
+      - db
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+logging:
+  level:
+    com.springboot.study: debug

@@ -30,6 +30,10 @@ dependencies {
     implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api' //스프링부트 3.0 이상
     implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl' //스프링부트 3.0 이상
 
+    // lombock
+    implementation 'org.projectlombok:lombok'
+
+
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools
     // implementation 불필요
     // implementation group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.7.1'
@@ -50,6 +54,13 @@ dependencies {
 
     // jdbc 로그 설정
     implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+
+    // jwt 관련 라이브러리
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
 }
 
 tasks.named('test') {
