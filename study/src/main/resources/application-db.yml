@@ -12,6 +12,5 @@ spring:
       port: 8080
       host: localhost
 
-jwt:
-  secret: ee.ff
+
 

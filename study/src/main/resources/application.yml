@@ -13,3 +13,6 @@ spring:
 logging:
   level:
     com.springboot.study: debug
+
+jwt:
+  secret: ee.ff

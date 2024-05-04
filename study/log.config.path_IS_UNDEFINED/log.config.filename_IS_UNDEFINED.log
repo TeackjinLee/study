@@ -155,3 +155,88 @@ DEBUG 24-05-04 23:25:21[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-
 DEBUG 24-05-04 23:25:21[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
 DEBUG 24-05-04 23:25:51[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
 DEBUG 24-05-04 23:25:51[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:26:21[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:26:21[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:26:51[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:26:51[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:27:21[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:27:21[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:27:51[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:27:51[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:28:21[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:28:21[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:28:51[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:28:51[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:29:21[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:29:21[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:29:51[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:29:51[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:30:21[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:30:21[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:30:51[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:30:51[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:31:21[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:31:21[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:31:51[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:31:51[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:32:21[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:32:21[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:32:51[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:32:51[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:33:21[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:33:21[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:33:51[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:33:51[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:34:21[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:34:21[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:34:51[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:34:51[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:35:21[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:35:21[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+WARN  24-05-04 23:35:47[HikariPool-1 housekeeper] [HikariPool:796] - HikariPool-1 - Retrograde clock change detected (housekeeper delta=25s960ms), soft-evicting connections from pool.
+DEBUG 24-05-04 23:35:47[HikariPool-1 connection closer] [PoolBase:132] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@5e4a2f40: (connection evicted)
+DEBUG 24-05-04 23:35:47[HikariPool-1 connection closer] [PoolBase:132] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@1f77257b: (connection evicted)
+DEBUG 24-05-04 23:35:47[HikariPool-1 connection closer] [PoolBase:132] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@2e223a3b: (connection evicted)
+DEBUG 24-05-04 23:35:47[HikariPool-1 connection closer] [PoolBase:132] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@7f58da34: (connection evicted)
+DEBUG 24-05-04 23:35:47[HikariPool-1 connection closer] [PoolBase:132] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@8cadd08: (connection evicted)
+DEBUG 24-05-04 23:35:47[HikariPool-1 connection closer] [PoolBase:132] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@7b1641cd: (connection evicted)
+DEBUG 24-05-04 23:35:47[HikariPool-1 connection closer] [PoolBase:132] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@24bc6b91: (connection evicted)
+DEBUG 24-05-04 23:35:47[HikariPool-1 connection closer] [PoolBase:132] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@1a6a2640: (connection evicted)
+DEBUG 24-05-04 23:35:47[HikariPool-1 connection closer] [PoolBase:132] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@21ab8bc9: (connection evicted)
+DEBUG 24-05-04 23:35:47[HikariPool-1 connection closer] [PoolBase:132] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@6166b492: (connection evicted)
+DEBUG 24-05-04 23:35:47[HikariPool-1 connection adder] [HikariPool:738] - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@55d211df
+DEBUG 24-05-04 23:35:47[HikariPool-1 connection adder] [HikariPool:738] - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@14ef1be4
+DEBUG 24-05-04 23:35:47[HikariPool-1 connection adder] [HikariPool:738] - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@25310f0b
+DEBUG 24-05-04 23:35:47[HikariPool-1 connection adder] [HikariPool:738] - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@74c0e4ab
+DEBUG 24-05-04 23:35:47[HikariPool-1 connection adder] [HikariPool:738] - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@7c98110e
+DEBUG 24-05-04 23:35:47[HikariPool-1 connection adder] [HikariPool:738] - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@708efcda
+DEBUG 24-05-04 23:35:47[HikariPool-1 connection adder] [HikariPool:738] - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@7d442119
+DEBUG 24-05-04 23:35:47[HikariPool-1 connection adder] [HikariPool:738] - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@3c581d5a
+DEBUG 24-05-04 23:35:47[HikariPool-1 connection adder] [HikariPool:738] - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@63e19204
+DEBUG 24-05-04 23:35:47[HikariPool-1 connection adder] [HikariPool:738] - HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@1eef32ff
+DEBUG 24-05-04 23:36:17[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:36:17[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:36:47[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:36:47[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:37:17[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:37:17[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:37:47[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:37:47[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:38:17[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:38:17[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:38:47[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:38:47[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:39:17[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:39:17[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:39:47[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:39:47[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:40:17[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:40:17[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:40:47[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:40:47[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:41:17[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:41:17[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:41:47[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:41:47[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-04 23:42:17[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-04 23:42:17[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
