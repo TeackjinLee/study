@@ -17,6 +17,8 @@ public class MemberRequestDto {
     private String nickname;
 
     public MemberDto toMember(PasswordEncoder passwordEncoder) {
+        System.out.println("####################################");
+        System.out.println(password);
         return MemberDto.builder()
                 .email(email)
                 .password(passwordEncoder.encode(password))
