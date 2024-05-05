@@ -33,9 +33,9 @@ public class TokenProvider {
 
     // 주의점: 여기서 @Value는 `springframework.beans.factory.annotation.Value`소속이다! lombok의 @Value와 착각하지 말것!
     //     * @param secretKey
-    public TokenProvider(@Value("${jwt.secret") String secretKey) {
-        byte[] KeyBytes = Decoders.BASE64.decode(secretKey);
-        this.key = Keys.hmacShaKeyFor(KeyBytes);
+    public TokenProvider(@Value("${jwt.secret}") String secretKey) {
+        byte[] keyBytes = Decoders.BASE64.decode(secretKey);
+        this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
     // 토큰 생성
@@ -64,6 +64,7 @@ public class TokenProvider {
                 .build();
     }
 
+    // 토큰을 받았을 때 토큰의 인증을 꺼내는 메소드다.
     public Authentication getAuthentication(String accessToken) {
         Claims claims = parseClaims(accessToken);
 

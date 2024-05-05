@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Builder
 @NoArgsConstructor
+@Table(name = "tb_member")
 public class MemberDto {
 
     @Id
