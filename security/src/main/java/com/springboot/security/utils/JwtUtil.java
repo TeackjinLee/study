@@ -1,5 +1,7 @@
 package com.springboot.security.utils;
 
+
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -7,6 +9,16 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import java.util.Date;
 
 public class JwtUtil {
+
+    public static boolean isExpired(String token, String secretKey) {
+        System.out.println("##########secretKeysecretKey");
+        System.out.println(secretKey);
+        System.out.println(token);
+        return Jwts.parser()
+                .setSigningKey(secretKey)
+                .parseClaimsJws(token)
+                .getBody().getExpiration().before(new Date());
+    }
 
     public static String createJwt(String userName, String secretKey, Long expiredMs) {
         Claims claims = Jwts.claims();

@@ -26,7 +26,7 @@ public class AuthenticationConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.httpBasic(AbstractHttpConfigurer::disable)
+        return http.httpBasic(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(authorize ->
@@ -34,13 +34,10 @@ public class AuthenticationConfig {
                                 .requestMatchers("/api/v1/users/login").permitAll()
                                 .requestMatchers("/api/v1/users/join").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/api/v1/reviews").authenticated()
-                );
-
-        http.sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(
-                SessionCreationPolicy.STATELESS));
-
-        http.addFilterBefore(new JwtFilter(userService, secretKey), UsernamePasswordAuthenticationFilter.class);
-
-        return http.build();
+                )
+                .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(
+                SessionCreationPolicy.STATELESS))
+                .addFilterBefore(new JwtFilter(userService, secretKey), UsernamePasswordAuthenticationFilter.class)
+                .build();
     }
 }
