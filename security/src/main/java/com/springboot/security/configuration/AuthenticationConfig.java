@@ -29,12 +29,10 @@ public class AuthenticationConfig {
         return http.httpBasic(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
-                .authorizeHttpRequests(authorize ->
-                        authorize
-                                .requestMatchers("/api/v1/users/login").permitAll()
-                                .requestMatchers("/api/v1/users/join").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/api/v1/reviews").authenticated()
-                )
+                .authorizeHttpRequests().requestMatchers("/api/v1/users/login", "/api/v1/users/join").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/v1/reviews").authenticated()
+                .anyRequest().authenticated()
+                .and()
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(
                 SessionCreationPolicy.STATELESS))
                 .addFilterBefore(new JwtFilter(userService, secretKey), UsernamePasswordAuthenticationFilter.class)

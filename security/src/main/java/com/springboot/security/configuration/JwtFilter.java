@@ -37,23 +37,9 @@ public class JwtFilter extends OncePerRequestFilter {
 //            return;
 //        }
 
-        if (authorization != null) {
-            String token = authorization.split(" ")[1];
-
-            if (JwtUtil.isExpired(token, secretKey)) {
-                log.error("Token이 만료 되었습니다.");
-                filterChain.doFilter(request, response);
-                return;
-            }
-        }
-
-
-        // Token꺼내기
 //        if (authorization != null) {
 //            String token = authorization.split(" ")[1];
-//            System.out.println("token sss");
-//            System.out.println(token);
-//            // Token Expired되었는지 여부
+//
 //            if (JwtUtil.isExpired(token, secretKey)) {
 //                log.error("Token이 만료 되었습니다.");
 //                filterChain.doFilter(request, response);
@@ -61,9 +47,26 @@ public class JwtFilter extends OncePerRequestFilter {
 //            }
 //        }
 
+        String token = null;
 
-        // UserName Token에서 꺼내기
-        String userName = "";
+        String userName = null;
+        // Token꺼내기
+        if (authorization != null) {
+            token = authorization.split(" ")[1];
+            System.out.println("token sss");
+            System.out.println(token);
+            // UserName Token에서 꺼내기
+            userName = JwtUtil.getUserName(token, secretKey);
+            // Token Expired되었는지 여부
+//            if (JwtUtil.isExpired(token, secretKey)) {
+//                    log.error("Token이 만료 되었습니다.");
+//                    filterChain.doFilter(request, response);
+//                return;
+//            }
+        }
+
+
+
 
         // 권한 부여
         UsernamePasswordAuthenticationToken authenticationToken =
