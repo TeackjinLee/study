@@ -1,6 +1,6 @@
 package com.springboot.study.api.member;
 
-import com.springboot.study.datasource.member.MemberDto;
+import com.springboot.study.datasource.member.Member;
 import com.springboot.study.datasource.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -26,7 +26,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException(username + "을 DB에서 찾을수 없습니다."));
     }
 
-    private UserDetails createUserDetails(MemberDto member) {
+    private UserDetails createUserDetails(Member member) {
         GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(member.getAuthority().toString());
 
         return new User(

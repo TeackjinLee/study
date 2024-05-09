@@ -1,8 +1,8 @@
 package com.springboot.study.api.common.config.auth;
 
+import com.springboot.study.api.member.dto.MemberRequestDto;
+import com.springboot.study.api.member.dto.MemberResponseDto;
 import com.springboot.study.datasource.common.TokenDto;
-import com.springboot.study.datasource.member.MemberRequestDto;
-import com.springboot.study.datasource.member.MemberResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +23,6 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<TokenDto> login(@RequestBody MemberRequestDto requestDto) {
-        System.out.println("123");
         return ResponseEntity.ok(authService.login(requestDto));
     }
 }

@@ -1,5 +1,6 @@
-package com.springboot.study.datasource.member;
+package com.springboot.study.api.member.dto;
 
+import com.springboot.study.datasource.member.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,7 +14,7 @@ public class MemberResponseDto {
     private String email;
     private String nickname;
 
-    public static MemberResponseDto of(MemberDto member) {
+    public static MemberResponseDto of(Member member) {
         return MemberResponseDto.builder()
                 .email(member.getEmail())
                 .nickname(member.getNickname())

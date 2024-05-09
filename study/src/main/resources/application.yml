@@ -12,7 +12,7 @@ spring:
         show_sql: true
 logging:
   level:
-    com.springboot.study: debug
+    com.springboot.study: info
 
 jwt:
-  secret: "rkGU45258GGhiolLO2465TFY5345kGU45258GGhiolLO2465TFY8643"
+  secret: "Q4NSl604sgyHJj1qwEkR3ycUeR4uUAt7WJraD7EN3O9DVM4yyYuHxMEbSF4XXyYJkal13eqgB0F7Bq4HDLXORWLSDLXORWLSDLXORWLS"

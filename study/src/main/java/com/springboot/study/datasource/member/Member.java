@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @Table(name = "tb_member")
-public class MemberDto {
+public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +38,7 @@ public class MemberDto {
     }
 
     @Builder
-    public MemberDto(Long id, String email, String password, String nickname, Authority authority) {
+    public Member(Long id, String email, String password, String nickname, Authority authority) {
         this.id = id;
         this.email = email;
         this.password = password;

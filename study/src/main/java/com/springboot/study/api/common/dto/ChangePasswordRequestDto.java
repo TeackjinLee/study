@@ -1,4 +1,4 @@
-package com.springboot.study.datasource.member;
+package com.springboot.study.api.common.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

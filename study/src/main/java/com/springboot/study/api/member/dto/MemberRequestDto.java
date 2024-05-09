@@ -1,5 +1,7 @@
-package com.springboot.study.datasource.member;
+package com.springboot.study.api.member.dto;
 
+import com.springboot.study.datasource.member.Authority;
+import com.springboot.study.datasource.member.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,10 +18,10 @@ public class MemberRequestDto {
     private String password;
     private String nickname;
 
-    public MemberDto toMember(PasswordEncoder passwordEncoder) {
+    public Member toMember(PasswordEncoder passwordEncoder) {
         System.out.println("####################################");
         System.out.println(password);
-        return MemberDto.builder()
+        return Member.builder()
                 .email(email)
                 .password(passwordEncoder.encode(password))
                 .nickname(nickname)

@@ -1,11 +1,10 @@
 package com.springboot.study.api.member;
 
-import com.springboot.study.datasource.member.ChangePasswordRequestDto;
-import com.springboot.study.datasource.member.MemberRequestDto;
-import com.springboot.study.datasource.member.MemberResponseDto;
+import com.springboot.study.api.member.dto.MemberRequestDto;
+import com.springboot.study.api.member.dto.MemberResponseDto;
+import com.springboot.study.api.common.dto.ChangePasswordRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
