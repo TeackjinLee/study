@@ -40,11 +40,15 @@ public class TokenProvider {
 
 
     // 토큰 생성
+
     public TokenDto generateTokenDto(Authentication authentication) {
 
         String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
+
+        System.out.println("authorities");
+        System.out.println(authorities);
 
         long now = (new Date()).getTime();
 
@@ -60,11 +64,19 @@ public class TokenProvider {
                 .signWith(key, SignatureAlgorithm.HS512)
                 .compact();
 
-        return TokenDto.builder()
+        System.out.println("accessToken");
+        System.out.println(accessToken);
+
+        TokenDto resultTokenDto = TokenDto.builder()
                 .grantType(BEARER_TYPE)
                 .accessToken(accessToken)
                 .tokenExpiresIn(tokenExpiresIn.getTime())
                 .build();
+
+        System.out.println("resultTokenDto");
+        System.out.println(resultTokenDto);
+
+        return resultTokenDto;
     }
 
     public Authentication getAuthentication(String accessToken) {
@@ -100,6 +112,8 @@ public class TokenProvider {
         return false;
     }
 
+    // 토큰을 claims형태로 만드는 메소드다.
+    // 이를 통해 위에서 권한 정보가 있는지 없는지 체크가 가능하다.
     private Claims parseClaims(String accessToken) {
         try {
             return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(accessToken).getBody();
