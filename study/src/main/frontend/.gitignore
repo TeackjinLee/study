@@ -2,10 +2,10 @@
 
 # properties
 *.properties
-
+*.yml
 # log
 *.log
-
+application-oauth.yml
 # dependencies
 /node_modules
 /.pnp

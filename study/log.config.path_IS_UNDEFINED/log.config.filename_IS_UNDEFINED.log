@@ -42,3 +42,35 @@ DEBUG 24-05-10 00:10:23[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-
 DEBUG 24-05-10 00:10:23[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
 DEBUG 24-05-10 00:10:53[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
 DEBUG 24-05-10 00:10:53[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-10 00:11:23[HikariPool-1 housekeeper] [HikariPool:414] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-10 00:11:23[HikariPool-1 housekeeper] [HikariPool:521] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0).
+DEBUG 24-05-10 00:11:37[SpringApplicationShutdownHook] [ApplicationAvailabilityBean:77] - Application availability state ReadinessState changed from ACCEPTING_TRAFFIC to REFUSING_TRAFFIC
+DEBUG 24-05-10 00:11:37[SpringApplicationShutdownHook] [AnnotationConfigServletWebServerApplicationContext:1029] - Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6c19b576, started on Thu May 09 23:58:20 KST 2024
+DEBUG 24-05-10 00:11:37[SpringApplicationShutdownHook] [DefaultLifecycleProcessor:365] - Stopping beans in phase 2147482623
+DEBUG 24-05-10 00:11:37[SpringApplicationShutdownHook] [DefaultLifecycleProcessor:238] - Bean 'webServerGracefulShutdown' completed its stop procedure
+DEBUG 24-05-10 00:11:37[SpringApplicationShutdownHook] [DefaultLifecycleProcessor:365] - Stopping beans in phase 2147481599
+DEBUG 24-05-10 00:11:37[SpringApplicationShutdownHook] [DefaultLifecycleProcessor:238] - Bean 'webServerStartStop' completed its stop procedure
+DEBUG 24-05-10 00:11:37[SpringApplicationShutdownHook] [DefaultLifecycleProcessor:365] - Stopping beans in phase -2147483647
+DEBUG 24-05-10 00:11:37[SpringApplicationShutdownHook] [DefaultLifecycleProcessor:238] - Bean 'springBootLoggingLifecycle' completed its stop procedure
+DEBUG 24-05-10 00:11:37[SpringApplicationShutdownHook] [AnnotationMBeanExporter:452] - Unregistering JMX-exposed beans on shutdown
+DEBUG 24-05-10 00:11:37[SpringApplicationShutdownHook] [AnnotationMBeanExporter:186] - Unregistering JMX-exposed beans
+DEBUG 24-05-10 00:11:37[SpringApplicationShutdownHook] [ThreadPoolTaskExecutor:218] - Shutting down ExecutorService 'applicationTaskExecutor'
+INFO  24-05-10 00:11:37[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'default'
+DEBUG 24-05-10 00:11:37[SpringApplicationShutdownHook] [SessionFactoryImpl:770] - HHH000031: Closing
+DEBUG 24-05-10 00:11:37[SpringApplicationShutdownHook] [TypeConfiguration$Scope:474] - Un-scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration$Scope@3f4921fd] from SessionFactory [org.hibernate.internal.SessionFactoryImpl@4c7a8ec4]
+DEBUG 24-05-10 00:11:37[SpringApplicationShutdownHook] [AbstractServiceRegistryImpl:403] - Implicitly destroying ServiceRegistry on de-registration of all child ServiceRegistries
+DEBUG 24-05-10 00:11:37[SpringApplicationShutdownHook] [BootstrapServiceRegistryImpl:296] - Implicitly destroying Boot-strap registry on de-registration of all child ServiceRegistries
+INFO  24-05-10 00:11:37[SpringApplicationShutdownHook] [HikariDataSource:350] - HikariPool-1 - Shutdown initiated...
+DEBUG 24-05-10 00:11:37[SpringApplicationShutdownHook] [HikariPool:414] - HikariPool-1 - Before shutdown stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 24-05-10 00:11:37[HikariPool-1 connection closer] [PoolBase:132] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@6cbbc817: (connection evicted)
+DEBUG 24-05-10 00:11:37[HikariPool-1 connection closer] [PoolBase:132] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@15b82b8f: (connection evicted)
+DEBUG 24-05-10 00:11:37[HikariPool-1 connection closer] [PoolBase:132] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@7597d4c0: (connection evicted)
+DEBUG 24-05-10 00:11:37[HikariPool-1 connection closer] [PoolBase:132] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@2027923d: (connection evicted)
+DEBUG 24-05-10 00:11:37[HikariPool-1 connection closer] [PoolBase:132] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@71d9cdf6: (connection evicted)
+DEBUG 24-05-10 00:11:37[HikariPool-1 connection closer] [PoolBase:132] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@6dbc6d82: (connection evicted)
+DEBUG 24-05-10 00:11:37[HikariPool-1 connection closer] [PoolBase:132] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@7148e3df: (connection evicted)
+DEBUG 24-05-10 00:11:37[HikariPool-1 connection closer] [PoolBase:132] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@31ae5561: (connection evicted)
+DEBUG 24-05-10 00:11:37[HikariPool-1 connection closer] [PoolBase:132] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@5e86bca: (connection evicted)
+DEBUG 24-05-10 00:11:37[HikariPool-1 connection closer] [PoolBase:132] - HikariPool-1 - Closing connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@38f3bd4d: (connection evicted)
+DEBUG 24-05-10 00:11:37[SpringApplicationShutdownHook] [HikariPool:414] - HikariPool-1 - After shutdown stats (total=0, active=0, idle=0, waiting=0)
+INFO  24-05-10 00:11:37[SpringApplicationShutdownHook] [HikariDataSource:352] - HikariPool-1 - Shutdown completed.
