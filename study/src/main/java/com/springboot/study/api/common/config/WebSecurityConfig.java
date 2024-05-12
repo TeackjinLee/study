@@ -1,8 +1,10 @@
 package com.springboot.study.api.common.config;
 
+import com.springboot.study.api.common.config.auth.CustomOAuth2UserService;
 import com.springboot.study.api.common.config.jwt.JwtAccessDeniedHandler;
 import com.springboot.study.api.common.config.jwt.JwtAuthenticationEntryPoint;
 import com.springboot.study.api.common.config.jwt.TokenProvider;
+import com.springboot.study.datasource.user.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +25,7 @@ public class WebSecurityConfig {
     private final TokenProvider tokenProvider;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
+    private final CustomOAuth2UserService customOAuth2UserService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -47,12 +50,16 @@ public class WebSecurityConfig {
 
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/auth/**").permitAll()
-                .anyRequest().authenticated() // 그 외 인증 없이 접근X
-
+                .requestMatchers("/**").permitAll()
+                .requestMatchers( "/test","/", "/auth/**", "/css/**", "/images/**", "/js/**", "/h2-console/**").permitAll()
+                .requestMatchers("/api/v1/**").hasRole(Role.USER.name())
                 .and()
-                .apply(new JwtSecurityConfig(tokenProvider)); // JwtFilter를 addFilterBefore로 등록했던 JwtSecurityConfig class 적용
-
+                    .logout()
+                        .logoutSuccessUrl("/")
+                .and()
+                .apply(new JwtSecurityConfig(tokenProvider)) // JwtFilter를 addFilterBefore로 등록했던 JwtSecurityConfig class 적용
+                .and()
+                .oauth2Login().userInfoEndpoint().userService(customOAuth2UserService);
         return http.build();
     }
 

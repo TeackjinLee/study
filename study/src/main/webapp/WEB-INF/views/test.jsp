@@ -7,10 +7,6 @@
     <title>View Test Page</title>
 </head>
 <body>
-    <h2>Hello ${name}</h2>
-    <div>JSP List Test</div>
-    <c:forEach var="item" items="${list}" varStatus="idx">
-        ${idx.index}, ${item.name} <br/>
-    </c:forEach>
+    <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
 </body>
 </html>
