@@ -1,19 +1,12 @@
 package com.springboot.study.test.controller;
 
 import com.springboot.study.api.common.config.auth.dto.SessionUser;
-import com.springboot.study.test.service.TestService;
-import com.springboot.study.test.vo.TestVo;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,7 +16,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TestController {
     private final HttpSession httpSession;
-
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @GetMapping("/")
