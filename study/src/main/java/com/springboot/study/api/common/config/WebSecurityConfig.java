@@ -14,6 +14,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
@@ -49,13 +50,15 @@ public class WebSecurityConfig {
                 .accessDeniedHandler(jwtAccessDeniedHandler)
 
                 .and()
-                .authorizeHttpRequests()
-                .requestMatchers("/**").permitAll()
-                .requestMatchers( "/test","/", "/auth/**", "/css/**", "/images/**", "/js/**", "/h2-console/**").permitAll()
-                .requestMatchers("/api/v1/**").hasRole(Role.USER.name())
-                .and()
-                    .logout()
-                        .logoutSuccessUrl("/")
+                .authorizeHttpRequests(
+                        authorize -> authorize
+                                .requestMatchers("/WEB-INF/views/**").permitAll()
+                                .requestMatchers("/login","/", "/auth/**", "/css/**", "/images/**", "/js/**", "/h2-console/**").permitAll()
+                                .requestMatchers("/api/v1/**").hasRole(Role.USER.name())
+                                .anyRequest().authenticated()
+                )
+                .logout()
+                        .logoutSuccessUrl("/login")
                 .and()
                 .apply(new JwtSecurityConfig(tokenProvider)) // JwtFilter를 addFilterBefore로 등록했던 JwtSecurityConfig class 적용
                 .and()
