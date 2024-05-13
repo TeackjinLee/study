@@ -1,4 +1,4 @@
-package com.springboot.study.test.controller;
+package com.springboot.study.api.test.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.GetMapping;

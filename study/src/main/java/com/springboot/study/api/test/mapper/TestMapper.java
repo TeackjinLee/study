@@ -1,6 +1,6 @@
-package com.springboot.study.test.mapper;
+package com.springboot.study.api.test.mapper;
 
-import com.springboot.study.test.vo.TestVo;
+import com.springboot.study.api.test.vo.TestVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

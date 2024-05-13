@@ -1,5 +1,6 @@
-package com.springboot.study.test.controller;
+package com.springboot.study.api.test.controller;
 
+import com.springboot.study.api.common.config.auth.LoginUser;
 import com.springboot.study.api.common.config.auth.dto.SessionUser;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +20,8 @@ public class TestController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @GetMapping("/")
-    public ModelAndView index(Model model) {
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+    public ModelAndView index(Model model, @LoginUser SessionUser user) {
+        // SessionUser user = (SessionUser) httpSession.getAttribute("user");
         System.out.println("user#####################");
         System.out.println(user);
 //        if (user != null) {

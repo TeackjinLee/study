@@ -1,4 +1,4 @@
-package com.springboot.study.test.vo;
+package com.springboot.study.api.test.vo;
 public class TestVo {
     private String id;
     private String name;

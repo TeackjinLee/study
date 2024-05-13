@@ -57,6 +57,11 @@ public class WebSecurityConfig {
                                 .requestMatchers("/api/v1/**").hasRole(Role.USER.name())
                                 .anyRequest().authenticated()
                 )
+//                .formLogin(login -> login
+//                        .loginPage("/login")
+//                        .successHandler(new SimpleUrlAuthenticationSuccessHandler("/login"))
+//                        .permitAll()
+//                )
                 .logout()
                         .logoutSuccessUrl("/login")
                 .and()

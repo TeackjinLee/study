@@ -1,7 +1,7 @@
-package com.springboot.study.test.service;
+package com.springboot.study.api.test.service;
 
-import com.springboot.study.test.mapper.TestMapper;
-import com.springboot.study.test.vo.TestVo;
+import com.springboot.study.api.test.mapper.TestMapper;
+import com.springboot.study.api.test.vo.TestVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
