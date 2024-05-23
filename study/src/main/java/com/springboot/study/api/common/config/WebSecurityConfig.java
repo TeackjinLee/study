@@ -52,6 +52,7 @@ public class WebSecurityConfig {
                 .and()
                 .authorizeHttpRequests(
                         authorize -> authorize
+                                .requestMatchers("/*").permitAll()
                                 .requestMatchers("/WEB-INF/views/**").permitAll()
                                 .requestMatchers("/login","/", "/auth/**", "/css/**", "/images/**", "/js/**", "/h2-console/**").permitAll()
                                 .requestMatchers("/api/v1/**").hasRole(Role.USER.name())
