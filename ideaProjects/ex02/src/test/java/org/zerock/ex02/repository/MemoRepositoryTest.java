@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.test.annotation.Commit;
 import org.zerock.ex02.entity.Memo;
 
 import java.util.List;
@@ -114,5 +115,17 @@ public class MemoRepositoryTest {
         result.forEach(System.out::println);
     }
 
+    @Test
+    public void testQueryMethodWithPageable() {
+        Pageable pageable = PageRequest.of(0,10, Sort.by("mno").descending());
+        Page<Memo> result = memoRepository.findByMnoBetween(10L, 50L, pageable);
+        result.forEach(System.out::println);
+    }
 
+    @Commit
+    @Transactional
+    @Test
+    public void testDeleteQueryMethod() {
+        memoRepository.deleteMemoByMnoLessThan(10L);
+    }
 }
