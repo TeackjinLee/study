@@ -128,4 +128,11 @@ public class MemoRepositoryTest {
     public void testDeleteQueryMethod() {
         memoRepository.deleteMemoByMnoLessThan(10L);
     }
+
+    @Test
+    public void testQueryMethodWIthPageable2() {
+        Pageable pageable = PageRequest.of(0,10, Sort.by("mno").descending());
+        Page<Memo> result = memoRepository.getListWithQuery(88L, pageable);
+        result.forEach(System.out::println);
+    }
 }

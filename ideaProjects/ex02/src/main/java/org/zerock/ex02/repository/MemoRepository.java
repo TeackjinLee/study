@@ -3,6 +3,7 @@ package org.zerock.ex02.repository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.zerock.ex02.entity.Memo;
 
 import java.util.List;
@@ -18,4 +19,8 @@ public interface MemoRepository extends JpaRepository<Memo, Long> {
     Page<Memo> findByMnoBetween(Long from, Long to, Pageable pageable);
 
     void deleteMemoByMnoLessThan(Long num);
+
+    @Query(value = "SELECT m FROM Memo m WHERE m.mno > :mno",
+            countQuery = "SELECT count(m) FROM Memo m WHERE m.mno > :mno")
+    Page<Memo> getListWithQuery(Long mno, Pageable pageable);
 }
