@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- 프래그먼트 파일과 메인 레이아웃을 연결 -->
+<th:block th:replace="~{/layout/layout1 :: setContent(~{this::content})}">
+    <!-- `content` 프래그먼트를 정의하고 채워넣을 내용 -->
+    <th:block th:fragment="content">
+        <h1>exTemplate Page</h1>
+    </th:block>
+</th:block>
+</html>
