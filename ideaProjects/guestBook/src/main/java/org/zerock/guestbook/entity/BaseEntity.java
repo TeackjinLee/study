@@ -9,6 +9,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @MappedSuperclass   // 테이블이 생성 안됨
 @EntityListeners(value={AuditingEntityListener.class})
@@ -17,9 +18,9 @@ public class BaseEntity {
 
     @CreatedDate
     @Column(name = "regDate", updatable = false)
-    private LocalDate regDate;
+    private LocalDateTime regDate;
 
     @LastModifiedDate
     @Column(name="modDate")
-    private LocalDate modDate;
+    private LocalDateTime modDate;
 }
