@@ -9,6 +9,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.zerock.guestbook.dto.GuestBookDTO;
+import org.zerock.guestbook.dto.common.PageRequestDTO;
+import org.zerock.guestbook.dto.common.PageResultDTO;
 import org.zerock.guestbook.entity.GuestBook;
 import org.zerock.guestbook.entity.QGuestBook;
 
@@ -96,4 +99,6 @@ public class GuestBookRepositoryTests {
         result.stream().forEach(System.out::println);
 
     }
+
+
 }
