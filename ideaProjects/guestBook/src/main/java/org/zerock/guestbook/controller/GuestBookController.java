@@ -51,13 +51,21 @@ public class GuestBookController {
         return "redirect:/guestbook/list";
     }
 
-    @GetMapping("/read")
+    @GetMapping({"/read", "/modify"})
     public void read(long gno, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model) {
         log.info("gno: " + gno);
 
         GuestBookDTO dto = guestBookService.read(gno);
 
         model.addAttribute("dto", dto);
+    }
+
+    @PostMapping("/remove")
+    public String remove(long gno, RedirectAttributes redirectAttributes) {
+        log.info("remove... " + gno);
+        guestBookService.remove(gno);
+        redirectAttributes.addFlashAttribute("msg", gno);
+        return "redirect:/guestbook/list";
     }
 
 }
