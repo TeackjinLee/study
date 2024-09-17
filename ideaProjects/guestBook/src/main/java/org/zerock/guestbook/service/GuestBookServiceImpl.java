@@ -52,16 +52,21 @@ public class GuestBookServiceImpl implements GuestBookService {
     }
 
     @Override
-    public void remove(Long gno) {
-        repository.deleteById(gno);
+    public Boolean remove(Long gno) {
+
+        Optional<GuestBook> findByGno = repository.findById(gno);
+        if(findByGno.isPresent()) {
+            repository.deleteById(gno);
+            return true;
+        }
+
+        return false;
     }
 
     @Override
-    public void modify(GuestBookDTO dto) {
+    public Boolean modify(GuestBookDTO dto) {
         // 제목, 내용 수정
         Optional<GuestBook> findByGno = repository.findById(dto.getGno());
-
-        GuestBookDTO result = entityToDto(findByGno.get());
 
         if(findByGno.isPresent()) {
 
@@ -70,7 +75,9 @@ public class GuestBookServiceImpl implements GuestBookService {
             entity.changeContent(dto.getContent());
 
             repository.save(entity);
+            return true;
         }
+        return false;
     }
 
     @Override

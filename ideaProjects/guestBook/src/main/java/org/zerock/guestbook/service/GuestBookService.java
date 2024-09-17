@@ -11,9 +11,9 @@ public interface GuestBookService {
 
     GuestBookDTO read(Long gno);
 
-    void remove(Long gno);
+    Boolean remove(Long gno);
 
-    void modify(GuestBookDTO dto);
+    Boolean modify(GuestBookDTO dto);
 
     PageResultDTO<GuestBookDTO, GuestBook> getList(PageRequestDTO requestDTO);
 

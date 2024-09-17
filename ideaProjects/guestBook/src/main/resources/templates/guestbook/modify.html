@@ -5,6 +5,8 @@
     <th:block th:fragment="content">
         <h1 class="mt-4">GuestBook Modify Page</h1>
         <form action="/guestbook/modify" method="post">
+            <!-- 페이지 번호 -->
+            <input type="hidden" name="page" th:value="${requestDTO.page}">
             <div class="form-group">
                 <label>Gno</label>
                 <input type="text" class="form-control" name="gno" th:value="${dto.gno}" readonly>
@@ -31,9 +33,48 @@
             </div>
         </form>
 
-        <button type="button" class="btn btn-primary">Modify</button>
-        <button type="button" class="btn btn-info">List</button>
-        <button type="button" class="btn btn-danger">Remove</button>
+        <button type="button" class="btn btn-primary modifyBtn">Modify</button>
+        <button type="button" class="btn btn-info listBtn">List</button>
+        <button type="button" class="btn btn-danger removeBtn">Remove</button>
     </th:block>
 </th:block>
 </html>
+
+<script th:inline="javascript">
+    let actionForm = document.querySelector("form");
+
+    let removeBtn = document.querySelector(".removeBtn");
+
+    let modifyBtn = document.querySelector(".modifyBtn");
+
+    removeBtn.addEventListener("click", function(){
+        actionForm.setAttribute("action", "/guestbook/remove");
+        actionForm.setAttribute("method", "post");
+
+        actionForm.submit();
+    });
+
+    modifyBtn.addEventListener("click", function(){
+        if (!confirm("수정하시겠습니까?")) {
+            return ;
+        }
+
+        actionForm.setAttribute("action", "/guestbook/modify");
+        actionForm.setAttribute("method", "post");
+
+        actionForm.submit();
+    });
+
+</script>
+
+<!--<script th:inline="javascript">
+    var actionForm = $("form");
+
+    $(".removeBtn").click(function() {
+        actionForm
+            .attr("action", "/guestbook/remove")
+            .attr("method", "post");
+
+        actionForm.submit();
+    });
+</script>-->

@@ -68,4 +68,17 @@ public class GuestBookController {
         return "redirect:/guestbook/list";
     }
 
+    @PostMapping("/modify")
+    public String modify(GuestBookDTO guestBookDTO, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, RedirectAttributes redirectAttributes, Model model) {
+        log.info("post modify..........................");
+        log.info("guestBookDTO : " + guestBookDTO);
+
+        guestBookService.modify(guestBookDTO);
+        redirectAttributes.addAttribute("page", requestDTO.getPage());
+        redirectAttributes.addAttribute("gno", guestBookDTO.getGno());
+
+
+        return "redirect:/guestbook/read";
+    }
+
 }
