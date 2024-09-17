@@ -40,12 +40,13 @@
 </th:block>
 </html>
 
-<script th:inline="javascript">
+<script>
     let actionForm = document.querySelector("form");
-
     let removeBtn = document.querySelector(".removeBtn");
-
     let modifyBtn = document.querySelector(".modifyBtn");
+    let listBtn = document.querySelector(".listBtn");
+
+    let formData = new FormData(actionForm);
 
     removeBtn.addEventListener("click", function(){
         actionForm.setAttribute("action", "/guestbook/remove");
@@ -59,11 +60,28 @@
             return ;
         }
 
-        actionForm.setAttribute("action", "/guestbook/modify");
-        actionForm.setAttribute("method", "post");
+        fetch("/guestbook/modify", {
+            method: "POST",
+            body: formData,
+        }).then((response) => response.json())
+            .then((data) => console.log(data))
 
         actionForm.submit();
     });
+
+    listBtn.addEventListener("click", function() {
+        var pageInfo = document.querySelector("input[name='page']");
+
+        // 모든 내용 지우기
+        while (actionForm.firstChild) {
+            actionForm.removeChild(actionForm.firstChild);
+        }
+        console.log("pageInfo", pageInfo);
+        actionForm.append(pageInfo);
+        actionForm.setAttribute("action", "/guestbook/list");
+        actionForm.setAttribute("method", "GET");
+        actionForm.submit();
+    })
 
 </script>
 
