@@ -7,6 +7,9 @@
         <form action="/guestbook/modify" method="post">
             <!-- 페이지 번호 -->
             <input type="hidden" name="page" th:value="${requestDTO.page}">
+            <input type="hidden" name="type" th:value="${requestDTO.type}">
+            <input type="hidden" name="keyword" th:value="${requestDTO.keyword}">
+
             <div class="form-group">
                 <label>Gno</label>
                 <input type="text" class="form-control" name="gno" th:value="${dto.gno}" readonly>
@@ -70,14 +73,26 @@
     });
 
     listBtn.addEventListener("click", function() {
-        var pageInfo = document.querySelector("input[name='page']");
+        // var pageInfo = document.querySelector("input[name='page']");
+        let page = document.querySelector("input[name='page']");
+        let type = document.querySelector("input[name='type']");
+        let keyword = document.querySelector("input[name='keyword']");
 
         // 모든 내용 지우기
         while (actionForm.firstChild) {
             actionForm.removeChild(actionForm.firstChild);
         }
-        console.log("pageInfo", pageInfo);
-        actionForm.append(pageInfo);
+        // console.log("pageInfo", pageInfo);
+        // actionForm.append(pageInfo);
+        console.log("page");
+        console.log(page);
+        console.log("type");
+        console.log(type);
+        console.log("keyword");
+        console.log(keyword);
+        actionForm.append(page);
+        actionForm.append(type);
+        actionForm.append(keyword);
         actionForm.setAttribute("action", "/guestbook/list");
         actionForm.setAttribute("method", "GET");
         actionForm.submit();
