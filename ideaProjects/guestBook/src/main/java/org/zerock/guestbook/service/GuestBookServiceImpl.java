@@ -1,5 +1,7 @@
 package org.zerock.guestbook.service;
 
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -10,6 +12,7 @@ import org.zerock.guestbook.dto.GuestBookDTO;
 import org.zerock.guestbook.dto.common.PageRequestDTO;
 import org.zerock.guestbook.dto.common.PageResultDTO;
 import org.zerock.guestbook.entity.GuestBook;
+import org.zerock.guestbook.entity.QGuestBook;
 import org.zerock.guestbook.repository.GuestBookRepository;
 
 import java.util.Optional;
@@ -85,11 +88,51 @@ public class GuestBookServiceImpl implements GuestBookService {
 
         Pageable pageable = requestDTO.getPageable(Sort.by("gno").descending());
 
-        Page<GuestBook> result = repository.findAll(pageable);
+        BooleanBuilder booleanBuilder = getSearch(requestDTO);  // 검색 조건 처리
+
+        Page<GuestBook> result = repository.findAll(booleanBuilder, pageable);
 
         Function<GuestBook, GuestBookDTO> fn = (this::entityToDto);
 
         return new PageResultDTO<>(result, fn);
+    }
+
+    private BooleanBuilder getSearch(PageRequestDTO pageRequestDTO) {
+        String type = pageRequestDTO.getType();
+
+        BooleanBuilder booleanBuilder = new BooleanBuilder();
+
+        QGuestBook qGuestBook = QGuestBook.guestBook;
+
+        String keyword = pageRequestDTO.getKeyword();
+
+        BooleanExpression expression = qGuestBook.gno.gt(0L); // gno > 0
+
+        booleanBuilder.and(expression);
+
+        if (type == null || type.trim().length() == 0) {
+            return booleanBuilder;
+        }
+
+        // 검색 조건 작성하기
+        BooleanBuilder conditionBuilder = new BooleanBuilder();
+
+        if (type.contains("t")){
+            conditionBuilder.or(qGuestBook.title.contains(keyword));
+        }
+
+        if (type.contains("c")) {
+            conditionBuilder.or(qGuestBook.content.contains(keyword));
+        }
+
+        if (type.contains("w")) {
+            conditionBuilder.or(qGuestBook.writer.contains(keyword));
+        }
+
+        // 모든 조건 통합
+        booleanBuilder.and(conditionBuilder);
+
+        return booleanBuilder;
     }
 
 }

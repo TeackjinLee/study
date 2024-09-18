@@ -9,12 +9,14 @@ import org.springframework.data.domain.Sort;
 
 
 @Builder
-@AllArgsConstructor // PageRequestDTO request = new PageRequestDTO(page, size);
+@AllArgsConstructor // PageRequestDTO request = new PageRequestDTO(page, size, type, keyword);
 @Data
 public class PageRequestDTO {
 
     private int page;
     private int size;
+    private String type;
+    private String keyword;
 
     public PageRequestDTO() {
         this.page = 1;
