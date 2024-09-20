@@ -31,16 +31,4 @@ public class MemberRepositoryTests {
         });
     }
 
-    @Test
-    public void testRead1() {
-        Optional<Board> result = boardRepository.findById(100L);
-
-        Board board = result.get();
-
-        System.out.println(board);
-        System.out.println("===========================");
-        System.out.println(board.getWriter());
-
-    }
-
 }
