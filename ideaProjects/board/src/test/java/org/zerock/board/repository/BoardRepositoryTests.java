@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.zerock.board.entity.Board;
 import org.zerock.board.entity.Member;
+import org.zerock.board.entity.Reply;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -42,6 +45,40 @@ public class BoardRepositoryTests {
         System.out.println(board);
         System.out.println("===========================");
         System.out.println(board.getWriter());
+
+    }
+
+    @Test
+    public void testReadWithWriter() {
+
+        Object result = boardRepository.getBoardWithWriter(100L);
+        Object[] arr = (Object[]) result;
+
+        System.out.println("==========================================================");
+        System.out.println(Arrays.toString(arr));
+
+    }
+
+    @Test
+    public void testGetBoardWithReply() {
+        List<Object[]> result = boardRepository.getBoardWithReplyList(100L);
+
+        for (Object[] arr : result) {
+            for (Object object : arr) {
+                if (object instanceof Board) {
+                    Board board = (Board) object;
+                    System.out.println("111");
+                    System.out.println(board);
+                    System.out.println("111");
+                }
+                if (object instanceof Reply) {
+                    Reply reply = (Reply) object;
+                    System.out.println("222");
+                    System.out.println(reply);
+                    System.out.println("222");
+                }
+            }
+        }
 
     }
 }
