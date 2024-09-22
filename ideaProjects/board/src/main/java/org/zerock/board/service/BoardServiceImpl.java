@@ -1,5 +1,6 @@
 package org.zerock.board.service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -11,6 +12,7 @@ import org.zerock.board.dto.PageResultDTO;
 import org.zerock.board.entity.Board;
 import org.zerock.board.entity.Member;
 import org.zerock.board.repository.BoardRepository;
+import org.zerock.board.repository.ReplyRepository;
 
 import java.util.function.Function;
 
@@ -20,6 +22,7 @@ import java.util.function.Function;
 public class BoardServiceImpl implements BoardService{
 
     private final BoardRepository boardRepository; // 자동 주입 final
+    private final ReplyRepository replyRepository;
 
     @Override
     public Long register(BoardDTO dto) {
@@ -54,4 +57,27 @@ public class BoardServiceImpl implements BoardService{
 
         return entityToDTO((Board)arr[0], (Member)arr[1], (Long)arr[2]);
     }
+
+    @Transactional
+    @Override
+    public void removeWithReplies(Long bno) {
+
+        replyRepository.deleteByBno(bno);
+
+        boardRepository.deleteById(bno);
+    }
+
+    @Transactional
+    @Override
+    public void modify(BoardDTO boardDTO) {
+
+        Board board = boardRepository.getReferenceById(boardDTO.getBno());  // Optional이 아닌 Board타입으로 처리 가능 getOne() 대신에 지연로딩 방식으로 동작
+
+        if (board != null) {
+            board.setTitle(boardDTO.getTitle());
+            board.setContent(boardDTO.getContent());
+        }
+
+    }
+
 }
