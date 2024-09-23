@@ -7,7 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.zerock.board.dto.BoardDTO;
 import org.zerock.board.dto.PageRequestDTO;
 import org.zerock.board.service.BoardService;
 
@@ -25,6 +28,22 @@ public class BoardController {
         log.info("list......." + pageRequestDTO);
 
         model.addAttribute("result", boardService.getList(pageRequestDTO));
+    }
+
+    @GetMapping("/register")
+    public void register() {
+        log.info("regisster get...");
+    }
+
+    @Transactional
+    @PostMapping("/register")
+    public String register(BoardDTO boardDTO, RedirectAttributes redirectAttributes) {
+
+        log.info("boardDTO......" + boardDTO);
+
+        boardService.register(boardDTO);
+
+        return "redirect:/board/list";
     }
 
 }
