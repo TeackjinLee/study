@@ -3,16 +3,16 @@
 
 <th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
     <th:block th:fragment="content">
-        <h1 class="mt-4">GuestBook Modify Page</h1>
-        <form action="/guestbook/modify" method="post">
+        <h1 class="mt-4">Board Modify Page</h1>
+        <form action="/board/modify" method="post">
             <!-- 페이지 번호 -->
             <input type="hidden" name="page" th:value="${requestDTO.page}">
             <input type="hidden" name="type" th:value="${requestDTO.type}">
             <input type="hidden" name="keyword" th:value="${requestDTO.keyword}">
 
             <div class="form-group">
-                <label>Gno</label>
-                <input type="text" class="form-control" name="gno" th:value="${dto.gno}" readonly>
+                <label>Bno</label>
+                <input type="text" class="form-control" name="bno" th:value="${dto.bno}" readonly>
             </div>
             <div class="form-group">
                 <label>Title</label>
@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
                 <label>Writer</label>
-                <input type="text" class="form-control" name="writer" th:value="${dto.writer}" readonly>
+                <input type="text" class="form-control" name="writer" th:value="${dto.writerName}" readonly>
             </div>
             <div class="form-group">
                 <label>RegDate</label>
@@ -52,7 +52,7 @@
     let formData = new FormData(actionForm);
 
     removeBtn.addEventListener("click", function(){
-        actionForm.setAttribute("action", "/guestbook/remove");
+        actionForm.setAttribute("action", "/board/remove");
         actionForm.setAttribute("method", "post");
 
         actionForm.submit();
@@ -63,13 +63,13 @@
             return ;
         }
 
-        fetch("/guestbook/modify", {
+        fetch("/board/modify", {
             method: "POST",
             body: formData,
         }).then((response) => response.json())
             .then((data) => console.log(data))
 
-        actionForm.submit();
+         actionForm.submit();
     });
 
     listBtn.addEventListener("click", function() {
@@ -93,7 +93,7 @@
         actionForm.append(page);
         actionForm.append(type);
         actionForm.append(keyword);
-        actionForm.setAttribute("action", "/guestbook/list");
+        actionForm.setAttribute("action", "/board/list");
         actionForm.setAttribute("method", "GET");
         actionForm.submit();
     })

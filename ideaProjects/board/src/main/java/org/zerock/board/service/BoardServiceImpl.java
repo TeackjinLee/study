@@ -63,8 +63,9 @@ public class BoardServiceImpl implements BoardService{
     public void removeWithReplies(Long bno) {
 
         replyRepository.deleteByBno(bno);
-
+        System.out.println("1sds1");
         boardRepository.deleteById(bno);
+        System.out.println("sadew");
     }
 
     @Transactional
@@ -76,6 +77,11 @@ public class BoardServiceImpl implements BoardService{
         if (board != null) {
             board.setTitle(boardDTO.getTitle());
             board.setContent(boardDTO.getContent());
+            System.out.println("f2334s");
+            System.out.println(boardDTO.getTitle());
+            System.out.println("fd2311");
+            boardRepository.save(board);
+            System.out.println("fds12341");
         }
 
     }

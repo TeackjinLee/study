@@ -33,7 +33,12 @@ public interface BoardService {
     }
 
     default BoardDTO entityToDTO(Board board, Member member, Long replyCount) {
-
+        System.out.println("fsd");
+        System.out.println(board);
+        System.out.println("222dfs");
+        System.out.println(member);
+        System.out.println("fddss");
+        System.out.println(replyCount);
         BoardDTO boardDTO = BoardDTO.builder()
                 .bno(board.getBno())
                 .title(board.getTitle())
