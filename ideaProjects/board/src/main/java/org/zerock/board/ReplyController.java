@@ -28,7 +28,10 @@ public class ReplyController {
         log.info("bno : {}", bno);
 
         return new ResponseEntity<>(replyService.getList(bno), HttpStatus.OK);
-
     }
+
+
+
+
 
 }

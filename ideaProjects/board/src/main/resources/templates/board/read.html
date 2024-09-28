@@ -35,6 +35,66 @@
         <a th:href="@{/board/list(page=${requestDTO.page}, type=${requestDTO.type}, keyword=${requestDTO.keyword})}">
             <button type="button" class="btn btn-primary">List</button>
         </a>
+        <div>
+            <div class="mt-4">
+                <h5>
+                    <span class="badge badge-secondary replyCount">Reply Count [[${dto.replyCount}]]</span>
+                </h5>
+                <div class="list-group replyList">
+
+                </div>
+            </div>
+        </div>
     </th:block>
 </th:block>
 </html>
+
+<script>
+
+    let bno = document.querySelector('input[name="bno"]').value;
+
+    // 댓글이 추가될 영역
+    let listGroup = document.querySelector(".replyList");
+
+    // 날짜 처리를 위한 함수
+    let formatTime = (str) => {
+        let date = new Date(str);
+
+        return date.getFullYear() + '/' +
+            (date.getMonth() + 1) + '/' +
+            date.getDate() + ' ' +
+            date.getHours() + ':' +
+            date.getMinutes();
+    }
+
+    // 특정한 게시글의 댓글을 처리하는 함수
+    function loadJSONData() {
+        let str = "";
+        fetch("/replies/board/" + bno)
+            .then((response) => response.json())
+            .then(arr => {
+                console.log(arr);
+
+                arr.forEach((reply, idx) => {
+                    console.log(reply);
+                    str += `<div class="card-body data-rno="${reply.rno}><b>${reply.rno}</b>
+                            <h5 class="card-title">${reply.text}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">${reply.replyer}</h6>
+                            <p class="card-text">${formatTime(reply.regDate)}</p>
+                            </div>`
+                });
+                listGroup.innerHTML = str;
+            })
+            .catch(error => {
+                console.error('Error fetching replies : ', error);
+            })
+
+    }
+
+
+    document.querySelector(".replyCount").addEventListener("click", function() {
+        loadJSONData();
+    });
+
+
+</script>
