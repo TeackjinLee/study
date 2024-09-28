@@ -6,6 +6,7 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.JPQLQuery;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.zerock.board.entity.Board;
@@ -14,6 +15,7 @@ import org.zerock.board.entity.QMember;
 import org.zerock.board.entity.QReply;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Log4j2
 public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport implements SearchBoardRepository {
@@ -58,7 +60,7 @@ public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport impleme
 
         JPQLQuery<Board> jpqlQuery = from(board);
         jpqlQuery.leftJoin(member).on(board.writer.eq(member));
-        jpqlQuery.leftJoin(reply).on(reply.board.eq(board)).groupBy(board);
+        jpqlQuery.leftJoin(reply).on(reply.board.eq(board));
 
         JPQLQuery<Tuple> tuple = jpqlQuery.select(board, member, reply.count());
 
@@ -92,10 +94,18 @@ public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport impleme
         tuple.where(booleanBuilder);
         tuple.groupBy(board);
 
-        List<Tuple> result = tuple.fetch();
+        this.getQuerydsl().applyPagination(pageable, tuple);
 
+        List<Tuple> result = tuple.fetch();
         log.info(result);
 
-        return null;
+        long count = tuple.fetchCount();
+        log.info("COUNT : " + count);
+
+        return new PageImpl<Object[]>(
+                result.stream().map(Tuple::toArray).collect(Collectors.toList()),
+                pageable,
+                count
+        );
     }
 }
