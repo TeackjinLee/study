@@ -205,7 +205,39 @@
     });
 
     // 댓글 수정 처리
+    document.querySelector(".replyModify").addEventListener("click", function (){
+       let rno = document.querySelector("input[name='rno']").value;
 
+       let reply = {
+           rno : rno,
+           bno : bno,
+           text : document.querySelector("input[name='replyText']").value,
+           replyer : document.querySelector("input[name='replyer']").value,
+       }
+
+       console.log(reply);
+
+       fetch(`/replies/${rno}`, {
+           method : "PUT",
+           body: JSON.stringify(reply),
+           headers: {
+               "Content-Type": "application/json; charset=utf-8"  // Content-Type을 명시적으로 지정
+           },
+       }).then(response => {
+               if (!response.ok) {
+                   throw new Error('Network response was not ok');
+               }
+               console.log(response);
+               return response;
+           }).then((result) => {
+               console.log("RESULT : " + result);
+               alert("댓글이 수정 되었습니다.");
+               modal.hide();
+               loadJSONData();
+           }).catch((error) => {
+               console.error('Error:', error);
+           });
+    });
 
     // 댓글 선택시 상세 알림창 나오게
     document.querySelector('.replyList').addEventListener('click', function(event) {
