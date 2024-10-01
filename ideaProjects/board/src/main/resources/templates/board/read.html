@@ -107,7 +107,7 @@
 
                 arr.forEach((reply, idx) => {
                     console.log(reply);
-                    str += `<div class="card-body data-rno="${reply.rno}><b>${reply.rno}</b>
+                    str += `<div class="card-body" data-rno="${reply.rno}"><b>${reply.rno}</b>
                             <h5 class="card-title">${reply.text}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">${reply.replyer}</h6>
                             <p class="card-text">${formatTime(reply.regDate)}</p>
@@ -136,10 +136,12 @@
         document.querySelector('input[name="replyText"]').value = '';
         document.querySelector('input[name="replyer"]').value = '';
 
-        document.querySelectorAll(".modal-footer .btn").forEach(btn => btn.style.visibility = 'hidden');
-        document.querySelectorAll(".replySave, .replyClose").forEach(btn => btn.style.visibility = 'visible');
+        document.querySelectorAll(".modal-footer .btn").forEach(btn => btn.style.display = 'none');
+        document.querySelectorAll(".replySave, .replyClose").forEach(btn => btn.style.display = 'block');
     });
 
+
+    // 댓글 저장
     document.querySelector(".replySave").addEventListener("click", function() {
        let reply = {
            bno : bno,
@@ -154,33 +156,73 @@
             headers: {
                 "Content-Type": "application/json; charset=utf-8"  // Content-Type을 명시적으로 지정
             },
-            dataType: 'json',
-        }) .then((data) => {
-            console.log("sfdsd");
-            console.log(data);
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        }).then((data) => {
             let newRno = parseInt(reply.bno);
             alert(newRno + "번 댓글이 등록되었습니다.");
             modal.hide();
             loadJSONData();
+        }).catch((error) => {
+            console.error('Error:', error);
         });
-
-
-       // fetch("/replies/board", {
-       //     method: "POST",
-       //     data: JSON.stringify(reply),
-       //     contentType: 'application/json; charset=utf-8',
-       //     dataType: 'json',
-       // }).then(data => {
-       //     console.log("fds");
-       //     console.log(data);
-       //     let newRno = data.bno;
-       //     console.log("fdsfs");
-       //     console.log(newRno);
-       //
-       //     alert(newRno + "번 댓글이 등록되었습니다.");
-       //     modal.hide();
-       //     loadJSONData();
-       // });
     });
 
+    // 댓글 삭제
+    document.querySelector(".replyRemove").addEventListener("click", function (){
+        let rno = document.querySelector("input[name='rno']").value;    // 모달창에 보이는 댓글 번호 hidden 처리되어 있음
+
+        fetch(`/replies/${rno}`, {
+            method: "DELETE",
+        }).then(response => response.text())
+            .then(result => {
+                console.log("result : " + result);
+                if (result === 'success') {
+                    alert("댓글이 삭제되었습니다.");
+                    modal.hide();
+                    loadJSONData();
+                }
+            }).catch(error => {
+                console.error('Error deleting reply:', error);
+            });
+
+        /* ajax 통신
+        $.ajax({
+            url : '/replies/' + rno,
+            method : 'delete',
+            success : function(result) {
+                console.log("result : " + result);
+                if(result === 'success') {
+                    alert("댓글이 삭제되었습니다.");
+                    loadJSONData();
+                }
+            }
+        });
+        */
+    });
+
+    // 댓글 수정 처리
+
+
+    // 댓글 선택시 상세 알림창 나오게
+    document.querySelector('.replyList').addEventListener('click', function(event) {
+
+        const cardBody = event.target.closest('.card-body');
+        console.log(cardBody);
+        if (cardBody) {
+            let rno = cardBody.dataset.rno;
+
+            document.querySelector("input[name='replyText']").value = cardBody.querySelector('.card-title').innerHTML;
+            document.querySelector("input[name='replyer']").value = cardBody.querySelector('.card-subtitle').innerHTML;
+            document.querySelector("input[name='rno']").value = rno;
+
+            document.querySelectorAll(".modal-footer .btn").forEach(btn => btn.style.display = 'none');
+            document.querySelectorAll(".replyRemove, .replyModify, .replyClose").forEach(btn => btn.style.display = 'block');
+
+            modal.show();
+        }
+    });
 </script>
