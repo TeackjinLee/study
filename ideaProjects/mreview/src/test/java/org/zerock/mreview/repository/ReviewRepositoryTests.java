@@ -8,6 +8,7 @@ import org.zerock.mreview.entity.Member;
 import org.zerock.mreview.entity.Movie;
 import org.zerock.mreview.entity.Review;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
 @SpringBootTest
@@ -37,6 +38,24 @@ public class ReviewRepositoryTests {
                     .build();
 
             reviewRepository.save(review);
+        });
+    }
+
+    @Test
+    public void testGetMovieReviews() {
+
+        Movie movie = Movie.builder().mno(92L).build();
+
+        List<Review> result = reviewRepository.findByMovie(movie);
+
+        result.forEach(movieReview -> {
+            System.out.println(movieReview.getReviewnum());
+            System.out.println("\t" + movieReview.getGrade());
+            System.out.println("\t" + movieReview.getText());
+            // LAZY로 could not initialize proxy [org.zerock.mreview.entity.Member#85] - no Session 에러
+            // 해결방법 - 1. @Query를 이용해서 조인 처리 2. @EntityGraph를 이용해서 Review 객체를 가져올 때 Member 객체를 로딩하는 방법
+            System.out.println("\t" + movieReview.getMember().getEmail());
+            System.out.println("==============================================");
         });
     }
 
