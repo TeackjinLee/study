@@ -1,6 +1,7 @@
 package org.zerock.mreview.common.file;
 
 import lombok.extern.log4j.Log4j2;
+import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
@@ -68,7 +69,16 @@ public class UploadController {
             Path savePath = Paths.get(saveName);
 
             try {
+                // 원본 파일 저장
                 uploadFile.transferTo(savePath); // 실제 이미지 저장
+
+                // 섬네일 생성
+                String thumbnailSaveName = uploadPath + File.separator + folderPath + File.separator + "s_" + uuid + "_" + fileName;
+                // 섬네일 파일 이름은 중간에 s_로 시작하도록
+                File thumbnailFile = new File(thumbnailSaveName);
+                // 섬네일 생성
+                Thumbnailator.createThumbnail(savePath.toFile(), thumbnailFile, 100, 100);
+
                 uploadResultDTOList.add(new UploadResultDTO(fileName, uuid, folderPath));
             } catch (IOException e) {
                 e.printStackTrace();
@@ -99,8 +109,6 @@ public class UploadController {
             String srcFileName = URLDecoder.decode(fileName, "UTF-8");
 
             log.info("srcFileName: " + srcFileName);
-            System.out.println("fdsfsd : " + File.separator);
-            System.out.println(File.separator);
             File file = new File(uploadPath + File.separator + srcFileName);
             log.info("file: " + file);
 
