@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.zerock.mreview.common.file.dto.UploadResultDTO;
@@ -129,7 +130,7 @@ public class UploadController {
     }
 
     @PostMapping("/removeFile")
-    public ResponseEntity<Boolean> removeFile(String fileName) {
+    public ResponseEntity<Boolean> removeFile(@RequestBody String fileName) {
         String srcFileName = null;
         System.out.println("fileName :::::::::::::::::: " + fileName);
         try {
