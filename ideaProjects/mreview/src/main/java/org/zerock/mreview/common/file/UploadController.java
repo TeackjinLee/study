@@ -131,7 +131,7 @@ public class UploadController {
     @PostMapping("/removeFile")
     public ResponseEntity<Boolean> removeFile(String fileName) {
         String srcFileName = null;
-
+        System.out.println("fileName :::::::::::::::::: " + fileName);
         try {
             srcFileName = URLDecoder.decode(fileName, "UTF-8");
             File file = new File(uploadPath + File.separator + srcFileName);

@@ -94,10 +94,56 @@
                 str += "<img src='/display?fileName=" + arr[i].thumbnailURL + "'>";
                 str += "<button class='removeBtn' data-name='" + arr[i].imageURL + "'>REMOVE</button>";
                 str += "</div>";
-
-                divArea.insertAdjacentHTML("beforeend", str);
             }
+            divArea.insertAdjacentHTML("beforeend", str);
         }
+
+        // $(".uploadResult").on("click", ".removeBtn", function(e){
+        //    var target = $(this);
+        //    var fileName = target.data("name");
+        //    var targetDiv = $(this).closest("div");
+        //    console.log(fileName);
+        //
+        //    $.post('/removeFile', {fileName: fileName}, function(result){
+        //        console.log(result);
+        //        if(result === true) {
+        //            targetDiv.remove();
+        //        }
+        //    })
+        // });
+
+        document.querySelector(".uploadResult").addEventListener("click", function(e){
+            if (e.target && e.target.classList.contains("removeBtn")) {
+                var target = e.target;
+                var fileName = target.getAttribute("data-name");
+                var targetDiv = target.closest("div");
+                console.log(fileName);
+
+                // POST 요청을 fetch로 처리
+                fetch('/removeFile', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: JSON.stringify({ fileName: fileName }),
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');  // 네트워크 오류 처리
+                        }
+                        return response.json();  // JSON 응답을 반환
+                    })
+                    .then(result => {
+                        console.log(result);
+                        if (result === true) {
+                            targetDiv.remove(); // 성공 시 div 제거
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+        });
 
     </script>
 </body>
