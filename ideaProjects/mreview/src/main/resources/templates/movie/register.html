@@ -42,8 +42,56 @@
                 return true;
             }
 
-            document.querySelector(".custom-file-input").addEventListener("change", function(e){
-               let fileName =  e.target.value().split("\\").pop();
+            document.querySelector(".custom-file-input").addEventListener("change", function(){
+                let fileInput = this.value.split("\\");
+                let fileName = fileInput[fileInput.length -1];   // 파일 이름 추출
+                // 현재 요소의 형제 요소 중에서 .custom-file-label 클래스를 가진 요소 찾기
+                var label = this.parentElement.querySelector(".custom-file-label");
+
+                if (label) {
+                    label.classList.add("selected");  // 'selected' 클래스 추가
+                    label.innerHTML = fileName;        // HTML 내용을 fileName으로 변경
+                }
+
+                console.log("fileName ::: ", fileName);
+
+                let formData = new FormData();
+                let inputFile = this;
+                let files = inputFile.files;
+                console.log("files ::: ", files);
+
+                let appended = false;
+
+                for (var i=0; i<files.length; i++) {
+                    if (!checkExtension(files[i].name, files[i].size)) {
+                        return false;
+                    }
+                    console.log(`files${i}::::::::::::`, files[i]);
+                    formData.append("uploadFiles",files[i]);
+                    appended = true;
+                }
+
+                //upload를 하지 않는다.
+                if (!appended) {return;}
+
+                for (var value of formData.values()) {
+                    console.log(value);
+                }
+
+                // 실제 업로드 부분
+                // upload
+                fetch("/uploadAjax", {
+                    method: "POST",
+                    headers: {
+
+                    },
+                    body: formData,
+                }).then(response => response.json())
+                    .then(result => console.log(result))
+                    .catch(error => {
+                        console.error('Error:', error);  // 에러 처리
+                    });
+
             });
 
         </script>
