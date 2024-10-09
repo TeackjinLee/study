@@ -23,7 +23,33 @@
             </div>
             <button class="btn btn-primary" type="submit">Submit</button>
         </form>
+        <div class="uploadResult">
+            <ul>
 
+            </ul>
+        </div>
+        <style>
+            .uploadResult {
+                width : 100%;
+                background-color : gray;
+                margin-top : 10px;
+            }
+            .uploadResult ul {
+                display: flex;
+                flex-flow: row;
+                justify-content: center;
+                align-content: center;
+                overflow: auto;
+            }
+            .uploadResult ul li {
+                list-style: none;
+                padding: 10px;
+                margin-left: 2em;
+            }
+            .uploadResult ul li img {
+                width: 100px;
+            }
+        </style>
         <script>
 
             let regex = new RegExp("(.*?)\.(exe|sh|zip|alz|tiff)$");
@@ -93,6 +119,16 @@
                     });
 
             });
+
+            function showResult(uploadResultArr){
+                var uploadUL = document.querySelector(".uploadResult ul");
+
+                var str = "";
+
+                // uploadResultArr.forEach(function(i, obj){
+                //     str +=
+                // });
+            }
 
         </script>
     </th:block>
