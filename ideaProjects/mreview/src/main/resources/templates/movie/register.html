@@ -39,6 +39,7 @@
                 flex-flow: row;
                 justify-content: center;
                 align-content: center;
+                vertical-align: top;
                 overflow: auto;
             }
             .uploadResult ul li {
@@ -113,7 +114,11 @@
                     },
                     body: formData,
                 }).then(response => response.json())
-                    .then(result => console.log(result))
+                    .then(result => {
+                        console.log("fdsfd");
+                        console.log(result);
+                        showResult(result);
+                    })
                     .catch(error => {
                         console.error('Error:', error);  // 에러 처리
                     });
@@ -125,10 +130,53 @@
 
                 var str = "";
 
-                // uploadResultArr.forEach(function(i, obj){
-                //     str +=
-                // });
-            }
+                uploadResultArr.forEach(function(obj, idx){
+                    console.log("fdf", obj);
+                    console.log("fd", idx);
+                    str += "<li data-name='" + obj.fileName + "' data-path='" + obj.folderPath + "' data-uuid='" + obj.uuid + "'>";
+                    str += "<div>"
+                    str += "<button type='button' data-file=\'" + obj.imageURL + "\' class='btn-warning btn-sm'>X</button><br>"
+                    str += "<img src='/display?fileName=" + obj.thumbnailURL + "'>";
+                    str += "</div>"
+                    str += "</li>";
+                });
+
+                uploadUL.innerHTML += str;
+            };
+
+            // 삭제 버튼 클릭
+            document.querySelector(".uploadResult ").addEventListener("click", function(e){
+
+                if (e.target && e.target.tagName === "BUTTON" && e.target.closest("li")) {
+                    console.log("delete file");
+                    let target = e.target;
+                    let targetFile = target.data("file");
+                    let targetLi = target.closest("li");
+                    console.log("targetFile:::::::::::::", targetFile);
+
+                    // POST 요청을 fetch로 처리
+                    fetch('/removeFile', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'text/plain'  // JSON 대신 단순 텍스트로 전송
+                        },
+                        body: targetFile
+                    })
+                        .then(response => {
+                            return response.json();  // JSON 응답을 반환
+                        })
+                        .then(result => {
+                            console.log(result);
+                            if (result === true) {
+                                targetLi.remove(); // 성공 시 div 제거
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                }
+
+            });
 
         </script>
     </th:block>
