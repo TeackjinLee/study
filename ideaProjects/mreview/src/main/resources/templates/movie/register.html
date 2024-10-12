@@ -150,7 +150,8 @@
                 if (e.target && e.target.tagName === "BUTTON" && e.target.closest("li")) {
                     console.log("delete file");
                     let target = e.target;
-                    let targetFile = target.data("file");
+                    console.log("target::::::::::::::", target);
+                    let targetFile =  target.getAttribute("data-file");
                     let targetLi = target.closest("li");
                     console.log("targetFile:::::::::::::", targetFile);
 
@@ -177,6 +178,52 @@
                 }
 
             });
+
+            const $form = document.querySelector("form");
+            const $button = document.querySelector(".btn-primary");
+
+            // prevent submit
+            $form.addEventListener("submit", function(e) {
+                e.preventDefault();  // 기본 동작 방지
+
+                let str = "";
+
+                // .uploadResult 내의 모든 <li> 요소를 순회
+                var listItems = document.querySelectorAll(".uploadResult li");
+
+                listItems.forEach(function(obj, i){
+                    console.log("i :::::::::: ", i);
+                    console.log("obj :::::::::: ", obj);
+                    let name = obj.getAttribute('data-name');
+                    let path = obj.getAttribute('data-path');
+                    let uuid = obj.getAttribute('data-uuid');
+
+                    str += "<input type='hidden' name='imageDTOList[" + i + "].imgName' value='" + name + "'>";
+                    str += "<input type='hidden' name='imageDTOList[" + i + "].path' value='" + path + "'>";
+                    str += "<input type='hidden' name='imageDTOList[" + i + "].uuid' value='" + uuid + "'>";
+
+                    // .box 요소의 HTML을 str로 설정
+                    document.querySelector(".box").innerHTML = str;
+                    // document.querySelector("form").submit();
+                    $form.submit();
+                });
+            });
+
+            // $('.btn-primary').on("click", function(e) {
+            //     e.preventDefault();
+            //
+            //     var str = "";
+            //
+            //     $(".uploadResult li").each(function(i, obj){
+            //         var target = $(obj);
+            //
+            //         str += "<input type='hidden' name='imageDTOList[" + i + "].imgName' value='" + target.data('name') + "'>";
+            //         str += "<input type='hidden' name='imageDTOList[" + i + "].path' value='" + target.data('path') + "'>";
+            //         str += "<input type='hidden' name='imageDTOList[" + i + "].uuid' value='" + target.data('uuid') + "'>";
+            //
+            //         $(".box").html(str);
+            //     });
+            // });
 
         </script>
     </th:block>
