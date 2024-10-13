@@ -18,6 +18,8 @@ public interface MovieService {
 
     PageResultDTO<MovieDTO, Object[]> getList(PageRequestDTO requestDTO);
 
+    MovieDTO getMovie(Long mno);
+
     default MovieDTO entitiesToDTO(Movie movie, List<MovieImage> movieImages, Double avg, Long reviewCnt) {
 
         MovieDTO movieDTO = MovieDTO.builder()
@@ -47,8 +49,8 @@ public interface MovieService {
         Map<String, Object> entityMap = new HashMap<>();
 
         Movie movie = Movie.builder()
-                .mno(movieDTO.getMno())
                 .title(movieDTO.getTitle())
+                .mno(movieDTO.getMno())
                 .build();
 
         entityMap.put("movie", movie);
