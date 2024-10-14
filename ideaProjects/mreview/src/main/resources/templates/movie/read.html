@@ -131,6 +131,7 @@
                                 throw new Error('Network response was not ok');
                             }
                             console.log(response);
+                            self.location.reload();
                             return response;
                         }).then((result) => {
                             console.log("result:::", result);
@@ -143,7 +144,7 @@
                         var bootstrapModal = new bootstrap.Modal(reviewModal);
 
                         // 모달을 표시합니다.
-                        bootstrapModal.show();
+                        bootstrapModal.hide();
                     });
                 });
 
