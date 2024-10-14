@@ -15,6 +15,7 @@
                 <input type="text" class="form-control" name="title" th:value="${dto.reviewCnt}" readonly>
             </div>
 
+
             <div class="form-group">
                 <label>Avg</label>
                 <input type="text" class="form-control" name="title" th:value="${dto.avg}" readonly>
@@ -56,28 +57,95 @@
                 ReviewCount <span class="badge badge-light">[[${dto.reviewCnt}]]</span>
             </button>
 
+            <button type="button" class="btn btn-info addReviewBtn">
+                Review Register
+            </button>
+
+            <div class="list-group reviewList">
+
+            </div>
+
             <script th:src="@{/starrr.js}"></script>
             <link rel="stylesheet" th:href="@{/css/starrr.css}">
             <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
             <script>
 
+                // JavaScript로만 데이터 가져오기
                 var grade = 0;
                 var mno = document.querySelector('.form-group').getAttribute('data-mno');
                 console.log(mno);
 
-                $(document).ready(function (e) {
-                    $('.starrr').starrr({
-                        rating: grade,
-                        change: function(e, value) {
-                            if (value) {
-                                console.log(value);
-                                grade = value;
-                            }
-                        }
-                    });
-                    $(".reviewModal").modal("show");
-                });
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Starrr 플러그인을 초기화하고 값이 변경될 때 동작하도록 설정
+                    var starrrElement = document.querySelector('.starrr');
 
+                    if (starrrElement) {
+                        $(starrrElement).starrr({
+                            rating: grade,
+                            change: function(e, value) {
+                                if (value) {
+                                    console.log(value);
+                                    grade = value;
+                                }
+                            }
+                        });
+                    }
+
+                    var reviewModal = document.querySelector(".reviewModal");
+                    var inputMid = document.querySelector('input[name="mid"]');
+                    var inputText = document.querySelector('input[name="text"]');
+
+                    document.querySelector(".addReviewBtn").addEventListener("click", function(){
+                       inputMid.value = "";
+                       inputText.value = "";
+
+                       document.querySelectorAll(".removeBtn, .modifyBtn").forEach(btn => btn.style.display = "none");
+
+                       // Bootstrap의 Modal 클래스를 사용하여 모달을 초기화합니다.
+                       var bootstrapModal = new bootstrap.Modal(reviewModal);
+
+                        // 모달을 표시합니다.
+                        bootstrapModal.show();
+                    });
+
+                    // 저장하기
+                    document.querySelector('.reviewSaveBtn').addEventListener("click", function(){
+                        var data = {
+                            mno:mno,
+                            grade: grade,
+                            text: inputText.value,
+                            mid: inputMid.value
+                        };
+                        console.log("data::::::::::;");
+                        console.log(data);
+
+                        fetch("/reviews/" + mno, {
+                            method: "POST",
+                            headers : {
+                                "Content-Type": "application/json; charset=utf-8"  // Content-Type을 명시적으로 지정
+                            },
+                            dataType: "text",
+                            body: JSON.stringify(data),
+                        }).then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            console.log(response);
+                            return response;
+                        }).then((result) => {
+                            console.log("result:::", result);
+                            self.location.reload();
+                        }).catch((error) => {
+                            console.error('Error:', error);
+                        });
+                        var reviewModal = document.querySelector(".reviewModal");
+                        // Bootstrap의 Modal 클래스를 사용하여 모달을 초기화합니다.
+                        var bootstrapModal = new bootstrap.Modal(reviewModal);
+
+                        // 모달을 표시합니다.
+                        bootstrapModal.show();
+                    });
+                });
 
             </script>
 
