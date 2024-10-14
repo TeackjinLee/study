@@ -6,7 +6,7 @@
 
             <h1 class="mt-4">Movie Read Page</h1>
 
-            <div class="form-group">
+            <div class="form-group" th:data-mno="${dto.mno}">
                 <label>Title</label>
                 <input type="text" class="form-control" name="title" th:value="${dto.title}" readonly>
             </div>
@@ -55,10 +55,85 @@
             <button type="button" class="btn btn-primary">
                 ReviewCount <span class="badge badge-light">[[${dto.reviewCnt}]]</span>
             </button>
+
+            <script th:src="@{/starrr.js}"></script>
+            <link rel="stylesheet" th:href="@{/css/starrr.css}">
+            <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
             <script>
 
+                var grade = 0;
+                var mno = document.querySelector('.form-group').getAttribute('data-mno');
+                console.log(mno);
+
+                $(document).ready(function (e) {
+                    $('.starrr').starrr({
+                        rating: grade,
+                        change: function(e, value) {
+                            if (value) {
+                                console.log(value);
+                                grade = value;
+                            }
+                        }
+                    });
+                    $(".reviewModal").modal("show");
+                });
+
+
             </script>
+
         </th:block>
     </th:block>
+
+    <div class="reviewModal modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Movie Review</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Reviewer ID</label>
+                        <input type="text" class="form-control" name="mid">
+                    </div>
+                    <div class="form-group">
+                        <label>Grade <span class="grade"></span></label>
+                        <div class="starrr"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Review Text</label>
+                        <input type="text" class="form-control" name="text" placeholder="Good Movie!">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary reviewSaveBtn">Save changes</button>
+                        <button type="button" class="btn btn-warning modifyBtn">Modify</button>
+                        <button type="button" class="btn btn-danger removeBtn">Remove</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="imageModal modal" tabindex="-2" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Picture</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn-secondary btn" type="button" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </html>
