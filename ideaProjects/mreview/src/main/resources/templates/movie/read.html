@@ -145,41 +145,67 @@
                         // 모달을 표시합니다.
                         bootstrapModal.hide();
                     });
-                });
 
-                // 페이지가 열리면 바로 리뷰 데이터를 가져와서 사용한다.
-                async function getMovieReviews() {
-                    function formatTime(str) {
-                        var date = new Date(str);
+                    // 페이지가 열리면 바로 리뷰 데이터를 가져와서 사용한다.
+                    function getMovieReviews() {
+                        function formatTime(str) {
+                            var date = new Date(str);
 
-                        return date.getFullYear() + '/' +
-                            (date.getMonth() + 1) + '/' +
-                            date.getDate() + ' ' +
-                            date.getHours() + ':' +
-                            date.getMinutes();
+                            return date.getFullYear() + '/' +
+                                (date.getMonth() + 1) + '/' +
+                                date.getDate() + ' ' +
+                                date.getHours() + ':' +
+                                date.getMinutes();
+                        }
+
+                        fetch("/reviews/" + mno + "/all")
+                            .then(response => response.json())
+                            .then(arr => {
+                                var str = "";
+                                arr.forEach((review, idx) => {
+                                    console.log(review);
+
+                                    str += '<div class="card-body" data-reviewnum=' + review.reviewnum + ' data-mid=' + review.mid + '>';
+                                    str += '<h5 class="card-title">' + review.text + ' <span>' + review.grade + '</span></h5>';
+                                    str += '<h6 class="card-subtitle mb-2 text-muted">' + review.nickname + '</h6>';
+                                    str += '<p class="card-text">' + formatTime(review.regDate) + '</p>';
+                                    str += '</div>';
+                                });
+                                document.querySelector(".reviewList").innerHTML += str;
+                            });
                     }
 
-                    await fetch("/reviews/" + mno + "/all")
-                        .then(response => response.json())
-                        .then(arr => {
-                            var str = "";
-                            arr.forEach((review, idx) => {
-                                console.log(review);
+                    getMovieReviews();
 
-                                str += '<div class="card-body" data-reviewnum=' + review.reviewnum + ' data-mid=' + review.mid + '>';
-                                str += '<h5 class="card-title">' + review.text + ' <span>' + review.grade + '</span></h5>';
-                                str += '<h6 class="card-subtitle mb-2 text-muted">' + review.nickname + '</h6>';
-                                str += '<p class="card-text">' + formatTime(review.regDate) + '</p>';
-                                str += '</div>';
-                            });
-                            document.querySelector(".reviewList").innerHTML += str;
-                        });
-                }
+                    // modify review
+                    var reviewnum;
 
-                getMovieReviews();
+                    document.querySelector('.reviewList').addEventListener('click', function(e) {
+                        console.log("dfd");
+                        console.log(e.target);
+                        console.log("d2");
+                        console.log(e.target.classList[0] === "card-body");
+                        if (e.target && e.target.classList[0] === "card-body") {
+                            console.log("fd");
 
-                // modify review
+                            document.querySelector(".reviewSaveBtn").style.display = 'none';
+                            document.querySelectorAll(".removeBtn, .modifyBtn").forEach(btn => btn.style.display = 'block');
 
+                            var targetReview = e.target.closest(".card-body");
+
+                            reviewnum = targetReview.getAttribute("data-reviewnum");
+                            console.log("reviewnum: " + reviewnum);
+                            inputMid.value = targetReview.getAttribute("data-mid");
+
+                            var reviewModal = document.querySelector(".reviewModal");
+                            // Bootstrap의 Modal 클래스를 사용하여 모달을 초기화합니다.
+                            var bootstrapModal = new bootstrap.Modal(reviewModal);
+
+                            // 모달을 표시합니다.
+                            bootstrapModal.show();
+                        }
+                    });
+                });
 
             </script>
 
