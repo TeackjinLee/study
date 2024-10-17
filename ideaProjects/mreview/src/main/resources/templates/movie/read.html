@@ -181,21 +181,51 @@
                     var reviewnum;
 
                     document.querySelector('.reviewList').addEventListener('click', function(e) {
-                        console.log("dfd");
-                        console.log(e.target);
-                        console.log("d2");
-                        console.log(e.target.classList[0] === "card-body");
-                        if (e.target && e.target.classList[0] === "card-body") {
-                            console.log("fd");
+                        var target = e.target;
+
+                        if (target && (target.classList.contains("card-body")
+                                || target.classList.contains("card-title")
+                                || target.classList.contains("card-subtitle")
+                                || target.classList.contains("card-text"))) {
 
                             document.querySelector(".reviewSaveBtn").style.display = 'none';
                             document.querySelectorAll(".removeBtn, .modifyBtn").forEach(btn => btn.style.display = 'block');
 
-                            var targetReview = e.target.closest(".card-body");
+                            var targetReview = target.closest(".card-body");
 
                             reviewnum = targetReview.getAttribute("data-reviewnum");
                             console.log("reviewnum: " + reviewnum);
                             inputMid.value = targetReview.getAttribute("data-mid");
+
+                            var targetTitle = targetReview.querySelector('.card-title');
+                            console.log("ft1");
+                            console.log(targetTitle);
+                            var clonedNode = targetTitle.cloneNode(true)  // 노드를 복제
+                            var span = clonedNode.querySelector('span');
+
+                            if (span) {
+                                span.remove();  // span요소 제거
+                            }
+                            console.log("span:::::::::::");
+                            console.log(span);
+                            console.log("cloneNode:::::::::::");
+                            console.log(clonedNode);
+                            var text = clonedNode.textContent.trim();
+
+                            inputText.value = text;
+
+                            var grade = targetReview.querySelector('.card-title span').textContent.trim();
+                            console.log("grade::::::::::::::");
+                            console.log(grade);
+                            var starElement = document.querySelector(".starrr a:nth-child(" + grade + ")");
+                            if (starElement) {
+                                var clickEvent = new MouseEvent('click', {
+                                    'view': window,
+                                    'bubbles': true,
+                                    'cancelable': true
+                                });
+                                starElement.dispatchEvent(clickEvent);
+                            }
 
                             var reviewModal = document.querySelector(".reviewModal");
                             // Bootstrap의 Modal 클래스를 사용하여 모달을 초기화합니다.
