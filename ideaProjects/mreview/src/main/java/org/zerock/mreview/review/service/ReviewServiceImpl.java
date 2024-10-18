@@ -46,9 +46,7 @@ public class ReviewServiceImpl implements ReviewService {
     @Transactional
     public void modify(ReviewDTO movieReviewDTO) {
         Optional<Review> result = reviewRepository.findById(movieReviewDTO.getReviewnum());
-        System.out.println("fff::::");
         if(result.isPresent()) {
-            System.out.println("fff::::::::");
             Review movieReview = result.get();
             movieReview.changeGrade(movieReviewDTO.getGrade());
             movieReview.changeText(movieReviewDTO.getText());

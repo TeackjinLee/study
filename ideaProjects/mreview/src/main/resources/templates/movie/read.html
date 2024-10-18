@@ -47,7 +47,7 @@
 
             <div class="uploadResult">
                 <ul>
-                    <li th:each="movieImage: ${dto.imageDTOList}">
+                    <li th:each="movieImage: ${dto.imageDTOList}" th:data-file="${movieImage.getThumbnailURL()}">
                         <img th:if="${movieImage.path != null}" th:src="|/display?fileName=${movieImage.getThumbnailURL()}|">
                     </li>
                 </ul>
@@ -280,6 +280,39 @@
                             });
 
                         bootstrapModal.hide();
+                    });
+                });
+
+                // 원본 이미지 불러오기
+                document.querySelectorAll(".uploadResult").forEach(image => {
+                    var target = null;
+                    image.addEventListener("click", function (e){
+
+                        if(e.target.matches("li")) {
+                            target = e.target;
+                        } else if (e.target.matches("img")) {
+                            target = e.target.parentNode;
+                        } else {
+                            return;
+                        }
+                        if (target != null) {
+                            var file = target.getAttribute("data-file");
+
+                            console.log("rf");
+                            console.log(file);
+
+                            document.querySelectorAll(".imageModal .modal-body").forEach(modal => {
+                                console.log("fd");
+                                console.log(modal);
+                                modal.innerHTML = "<img style='width:100%' src='/display?fileName=" + file + "&size=1' >"
+                            });
+
+                            var reviewModal = document.querySelector(".imageModal");
+                            // Bootstrap의 Modal 클래스를 사용하여 모달을 초기화합니다.
+                            var bootstrapModal = new bootstrap.Modal(reviewModal);
+
+                            bootstrapModal.show();
+                        }
                     });
                 });
 

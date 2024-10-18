@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -96,22 +97,28 @@ public class UploadController {
         // make folder --------------------
         File uploadPathFolder = new File(uploadPath, folderPath);
 
-        if (uploadPathFolder.exists() == false) {
+        if (!uploadPathFolder.exists()) {
             uploadPathFolder.mkdirs();
         }
         return folderPath;
     }
 
     @GetMapping("/display")
-    public ResponseEntity<byte[]> getFile(String fileName) {
+    public ResponseEntity<byte[]> getFile(String fileName, String size) {
 
         ResponseEntity<byte[]> result = null;
 
         try {
-            String srcFileName = URLDecoder.decode(fileName, "UTF-8");
+            String srcFileName = URLDecoder.decode(fileName, StandardCharsets.UTF_8);
 
             log.info("srcFileName: " + srcFileName);
+
             File file = new File(uploadPath + File.separator + srcFileName);
+
+            if (size != null && size.equals("1")) {
+                file = new File(file.getParent(), file.getName().substring(2));
+            }
+
             log.info("file: " + file);
 
             HttpHeaders header = new HttpHeaders();
