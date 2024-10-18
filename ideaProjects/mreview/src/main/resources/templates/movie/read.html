@@ -76,6 +76,9 @@
                 console.log(mno);
 
                 document.addEventListener('DOMContentLoaded', function() {
+                    var reviewModal = document.querySelector(".reviewModal");
+                    // Bootstrap의 Modal 클래스를 사용하여 모달을 초기화합니다.
+                    var bootstrapModal = new bootstrap.Modal(reviewModal);
                     // Starrr 플러그인을 초기화하고 값이 변경될 때 동작하도록 설정
                     var starrrElement = document.querySelector('.starrr');
 
@@ -227,13 +230,56 @@
                                 starElement.dispatchEvent(clickEvent);
                             }
 
-                            var reviewModal = document.querySelector(".reviewModal");
-                            // Bootstrap의 Modal 클래스를 사용하여 모달을 초기화합니다.
-                            var bootstrapModal = new bootstrap.Modal(reviewModal);
-
                             // 모달을 표시합니다.
                             bootstrapModal.show();
                         }
+                    });
+
+                    // 영화리뷰 수정과 삭제
+                    document.querySelector(".modifyBtn").addEventListener("click", function (){
+                        var data = {
+                           reviewnum : reviewnum,
+                           mno: mno,
+                           grade, grade,
+                           text:inputText.value,
+                           mid: inputMid.value,
+                        };
+                        console.log("data::::::::");
+                        console.log(data);
+
+                        fetch(`/reviews/${mno}/${reviewnum}`, {
+                            method: "PUT",
+                            body: JSON.stringify(data),
+                            headers: {
+                                "Content-Type" : "application/json; charset=utf-8",
+                            },
+                            dataType:"text",
+                        }).then(data => data.json())
+                            .then(result => {
+                                console.log("result :::::: " + result);
+                                self.location.reload();
+                            }).catch(error => console.log(error));
+                        // 모달을 표시합니다.
+                        bootstrapModal.hide();
+                    });
+
+                    document.querySelector(".removeBtn").addEventListener("click", function (){
+                        var data = {reviewnum : reviewnum};
+                        console.log(data);
+
+                        fetch(`/reviews/${mno}/${reviewnum}`, {
+                            method: "DELETE",
+                            headers : {
+                                "Content-Type" : "application/json; charset=utf-8"
+                            },
+                            dataType: "text",
+                        }).then(data => data.json())
+                            .then(result => {
+                                console.log("result : " + result);
+                                self.location.reload();
+                            });
+
+                        bootstrapModal.hide();
                     });
                 });
 

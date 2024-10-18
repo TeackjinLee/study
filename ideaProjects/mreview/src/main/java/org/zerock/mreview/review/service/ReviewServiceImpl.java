@@ -1,5 +1,6 @@
 package org.zerock.mreview.review.service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -42,11 +43,12 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
+    @Transactional
     public void modify(ReviewDTO movieReviewDTO) {
         Optional<Review> result = reviewRepository.findById(movieReviewDTO.getReviewnum());
-
+        System.out.println("fff::::");
         if(result.isPresent()) {
-
+            System.out.println("fff::::::::");
             Review movieReview = result.get();
             movieReview.changeGrade(movieReviewDTO.getGrade());
             movieReview.changeText(movieReviewDTO.getText());
