@@ -40,11 +40,13 @@ public class SecurityConfig {
         log.info("----------------------------filterChain-------------------------------");
 
         http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/sample/all").permitAll()
-                .requestMatchers("/sample/member").hasRole("USER")
-        )
-        .formLogin(Customizer.withDefaults())
-                .csrf(AbstractHttpConfigurer::disable);
+                    .requestMatchers("/sample/all").permitAll()
+                    .requestMatchers("/sample/member").hasRole("USER")
+                )
+                .formLogin(Customizer.withDefaults())
+                .csrf(AbstractHttpConfigurer::disable)
+                .logout(Customizer.withDefaults());
+
 
         return http.build();
     };
