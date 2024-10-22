@@ -37,19 +37,23 @@ public class SecurityConfig {
 //    }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(final HttpSecurity http) throws Exception {
 
         log.info("----------------------------filterChain-------------------------------");
 
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                    .requestMatchers("/", "/sample/all").permitAll()
-                    .requestMatchers("/sample/member").hasRole("USER")
+                    .requestMatchers("/", "/auth/**", "/js/**", "/css/**", "/image/**", "/login/**", "/sample/all").permitAll()
+                    .requestMatchers("/sample/member").hasAnyRole("USER")
+                        .anyRequest().authenticated()
                 )
                 .formLogin(withDefaults()) // 기본 form 로그인 사용
                 .logout(withDefaults());
 
+        http.oauth2Login(withDefaults());
 
         return http.build();
     };
+
+
 }
