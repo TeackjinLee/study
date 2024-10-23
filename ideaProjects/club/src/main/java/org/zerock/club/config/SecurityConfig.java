@@ -69,7 +69,7 @@ public class SecurityConfig {
 
     @Bean
     public ClubLoginSuccessHandler clubLoginSuccessHandler() {
-        return new ClubLoginSuccessHandler();
+        return new ClubLoginSuccessHandler(passwordEncoder());
     }
 
 }
