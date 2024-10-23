@@ -14,10 +14,12 @@ import org.zerock.club.config.CustomOAuth2User;
 import org.zerock.club.entity.ClubMember;
 import org.zerock.club.entity.ClubMemberRole;
 import org.zerock.club.repository.ClubMemberRepository;
+import org.zerock.club.security.dto.ClubAuthMemberDTO;
 
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Log4j2
 @Service
@@ -54,14 +56,28 @@ public class ClubOAuthUserDetailService extends DefaultOAuth2UserService {
             email = oAuth2User.getAttribute("email");
         }
 
-        ClubMember member = saveSocialUser(email);
+        log.info("EMAIL : " + email);
 
+        ClubMember member = saveSocialMember(email);
+        // return oAuth2User;
         // 권한추가 있을때 이거 사용
 //        return new CustomOAuth2User(oAuth2User, mappedAuthorities);
-        return oAuth2User;
+
+        ClubAuthMemberDTO clubAuthMember = new ClubAuthMemberDTO(
+                member.getEmail(),
+                member.getPassword(),
+                true,   // fromSocial
+                member.getRoleSet().stream().map(
+                        role -> new SimpleGrantedAuthority("ROLE_" + role.name())
+                ).collect(Collectors.toList()),
+                oAuth2User.getAttributes()
+        );
+        clubAuthMember.setName(member.getName());
+
+        return clubAuthMember;
     }
 
-    private ClubMember saveSocialUser(String email) {
+    private ClubMember saveSocialMember(String email) {
 
         Optional<ClubMember> result = repository.findByEmail(email, true);
 
