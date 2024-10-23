@@ -19,6 +19,7 @@ import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.zerock.club.security.handler.ClubLoginSuccessHandler;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -59,25 +60,16 @@ public class SecurityConfig {
                 .formLogin(withDefaults()) // 기본 form 로그인 사용
                 .logout(withDefaults());
 
-        http.oauth2Login(withDefaults());
+        http.oauth2Login(oauth2Login ->
+                    oauth2Login.successHandler(clubLoginSuccessHandler())
+                );
 
         return http.build();
     };
 
-//    @Bean
-//    public OAuth2UserService<OAuth2UserRequest, OAuth2User> oAuth2UserService() {
-//        DefaultOAuth2UserService delegate = new DefaultOAuth2UserService();
-//
-//        return userRequest -> {
-//            OAuth2User oAuth2User = delegate.loadUser(userRequest);
-//            Set<GrantedAuthority> mappedAuthorities = new HashSet<>(oAuth2User.getAuthorities());
-//
-//            // Add the ROLE_USER authority
-//            mappedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-//
-//
-//            // Return the OAuth2User with the additional role
-//            return new CustomOAuth2User(oAuth2User, mappedAuthorities);
-//        };
-//    }
+    @Bean
+    public ClubLoginSuccessHandler clubLoginSuccessHandler() {
+        return new ClubLoginSuccessHandler();
+    }
+
 }
