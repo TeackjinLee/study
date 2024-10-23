@@ -53,7 +53,7 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
                     .requestMatchers("/", "/auth/**", "/js/**", "/css/**", "/image/**", "/login/**", "/sample/all").permitAll()
-                    .requestMatchers("/sample/member").hasAnyRole("USER")
+                    .requestMatchers("/sample/member").hasAnyAuthority("OAUTH2_USER", "ROLE_USER")
                         .anyRequest().authenticated()
                 )
                 .formLogin(withDefaults()) // 기본 form 로그인 사용
