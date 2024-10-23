@@ -7,12 +7,21 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -55,5 +64,20 @@ public class SecurityConfig {
         return http.build();
     };
 
-
+//    @Bean
+//    public OAuth2UserService<OAuth2UserRequest, OAuth2User> oAuth2UserService() {
+//        DefaultOAuth2UserService delegate = new DefaultOAuth2UserService();
+//
+//        return userRequest -> {
+//            OAuth2User oAuth2User = delegate.loadUser(userRequest);
+//            Set<GrantedAuthority> mappedAuthorities = new HashSet<>(oAuth2User.getAuthorities());
+//
+//            // Add the ROLE_USER authority
+//            mappedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+//
+//
+//            // Return the OAuth2User with the additional role
+//            return new CustomOAuth2User(oAuth2User, mappedAuthorities);
+//        };
+//    }
 }
