@@ -21,6 +21,7 @@ public class SampleController {
 
     /* 로그인한 사용자만 접근할 수 있는 페이지 */
     @GetMapping("/member")
+    @PreAuthorize("hasRole('USER')")
     public void exMember(@AuthenticationPrincipal ClubAuthMemberDTO clubAuthMember) {
         log.info("exMember.......");
 
