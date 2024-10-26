@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface NoteRepository extends JpaRepository<Note, Long> {
 
     @EntityGraph(attributePaths = "writer", type = EntityGraph.EntityGraphType.LOAD)
-    @Query("select n from Note n where n.num =: num")
+    @Query("select n from Note n where n.num = :num")
     Optional<Note> getWithWriter(Long num);
 
     @EntityGraph(attributePaths = {"writer"}, type = EntityGraph.EntityGraphType.LOAD)
