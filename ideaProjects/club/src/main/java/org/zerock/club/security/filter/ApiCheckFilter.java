@@ -39,7 +39,7 @@ public class ApiCheckFilter extends OncePerRequestFilter {
             log.info("ApiCheckFiletr.........................");
 
             boolean checkHeader = checkAuthHeader(request);
-
+            log.info("checkAuthHeader ::::::: " + checkHeader);
             if (checkHeader) {
                 filterChain.doFilter(request, response);
                 return;

@@ -20,8 +20,8 @@ public class SampleController {
     }
 
     /* 로그인한 사용자만 접근할 수 있는 페이지 */
-    @GetMapping("/member")
     @PreAuthorize("hasRole('USER')")
+    @GetMapping("/member")
     public void exMember(@AuthenticationPrincipal ClubAuthMemberDTO clubAuthMember) {
         log.info("exMember.......");
 
@@ -30,7 +30,6 @@ public class SampleController {
     }
 
     /* 관리자 권한이 있는 사용자만 접근할 수 있는 페이지 */
-    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/admin")
     public void exAdmin() {
         log.info("exAdmin......");
