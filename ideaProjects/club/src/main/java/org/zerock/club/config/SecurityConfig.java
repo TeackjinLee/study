@@ -45,18 +45,18 @@ public class SecurityConfig {
 //        return new InMemoryUserDetailsManager(user);
 //    }
 
-    @Bean
+    /*@Bean
     public SecurityFilterChain filterChain(final HttpSecurity http) throws Exception {
 
         log.info("----------------------------filterChain-------------------------------");
 
         http.csrf(AbstractHttpConfigurer::disable);
 
-        /*http.authorizeHttpRequests(authorize -> authorize
+        *//*http.authorizeHttpRequests(authorize -> authorize
                 .requestMatchers("/", "/auth/**", "/js/**", "/css/**", "/image/**", "/login/**", "/sample/all").permitAll()
                 .requestMatchers("/sample/member").hasAnyAuthority("OAUTH2_USER", "ROLE_USER")
                 .anyRequest().authenticated()
-        );*/
+        );*//*
 
         http.formLogin(withDefaults()); // 기본 form 로그인 사용
         http.logout(withDefaults());
@@ -75,20 +75,59 @@ public class SecurityConfig {
 
         AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
 
+        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        // Get AuthenticationManager
+        AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
+        // 반드시 필요
+        http.authenticationManager(authenticationManager);
+
+        // APILoginFilter
+//        ApiLoginFilter apiLoginFilter = new ApiLoginFilter("/api/login");
+//        apiLoginFilter.setAuthenticationManager(authenticationManager);
+//        apiLoginFilter.setAuthenticationFailureHandler(new ApiLoginFailHandler());
+
+        http.addFilterBefore(apiLoginFilter(authenticationManager), UsernamePasswordAuthenticationFilter.class);
+
+        return http.build();
+    };*/
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        // AuthenticationManager설정
+        AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
+        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        // Get AuthenticationManager
         AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
 
         // 반드시 필요
         http.authenticationManager(authenticationManager);
 
-        // APILoginFilter
-        ApiLoginFilter apiLoginFilter = new ApiLoginFilter("/api/login");
-        apiLoginFilter.setAuthenticationManager(authenticationManager);
-        apiLoginFilter.setAuthenticationFailureHandler(new ApiLoginFailHandler());
+        http.formLogin(withDefaults());
+        http.csrf(AbstractHttpConfigurer::disable);
+        http.logout(withDefaults());
+        http.oauth2Login(oauth2Login ->
+                oauth2Login.successHandler(clubLoginSuccessHandler())
+        );
+        // 자동로그인 기능
+        http.rememberMe(remember -> remember
+                .tokenValiditySeconds(60 * 60 * 24 * 7) // 7일지정
+                .userDetailsService(userDetailsService)
+        );
 
-        http.addFilterBefore(apiLoginFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(apiCheckFilter(), UsernamePasswordAuthenticationFilter.class);
+
+        http.addFilterBefore(apiLoginFilter(authenticationManager), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
-    };
+    }
+
+    public ApiLoginFilter apiLoginFilter(AuthenticationManager authenticationManager) throws Exception {
+        ApiLoginFilter apiLoginFilter = new ApiLoginFilter("/api/login");
+        apiLoginFilter.setAuthenticationManager(authenticationManager);
+
+        return apiLoginFilter;
+    }
+
 
     @Bean
     public ClubLoginSuccessHandler clubLoginSuccessHandler() {

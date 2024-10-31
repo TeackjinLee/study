@@ -32,7 +32,7 @@ public class ApiCheckFilter extends OncePerRequestFilter {
         log.info("REQUESTURI : " + request.getRequestURI());
 
         log.info(antPathMatcher.match(pattern, request.getRequestURI()));
-
+        System.out.println("TEST@@@@@@@@@@@@@@@2222@@@@@2");
         if (antPathMatcher.match(pattern, request.getRequestURI())) {
             log.info("ApiCheckFiletr.........................");
             log.info("ApiCheckFiletr.........................");
@@ -44,6 +44,7 @@ public class ApiCheckFilter extends OncePerRequestFilter {
                 filterChain.doFilter(request, response);
                 return;
             } else {
+                System.out.println("TEST@@@@@@@@@@@@@@@@@@@@");
                 response.setStatus(HttpServletResponse.SC_FORBIDDEN);
                 // json 리턴 및 한글깨짐 수정.
                 response.setContentType("text/html;charset=utf-8");
