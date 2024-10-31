@@ -18,6 +18,7 @@ import org.zerock.club.security.filter.ApiLoginFilter;
 import org.zerock.club.security.handler.ApiLoginFailHandler;
 import org.zerock.club.security.handler.ClubLoginSuccessHandler;
 import org.zerock.club.security.service.ClubUserDetailsService;
+import org.zerock.club.security.util.JWTUtil;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -98,7 +99,6 @@ public class SecurityConfig {
         authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
         // Get AuthenticationManager
         AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
-
         // 반드시 필요
         http.authenticationManager(authenticationManager);
 
@@ -113,16 +113,13 @@ public class SecurityConfig {
                 .tokenValiditySeconds(60 * 60 * 24 * 7) // 7일지정
                 .userDetailsService(userDetailsService)
         );
-
         http.addFilterBefore(apiCheckFilter(), UsernamePasswordAuthenticationFilter.class);
-
         http.addFilterBefore(apiLoginFilter(authenticationManager), UsernamePasswordAuthenticationFilter.class);
-
         return http.build();
     }
 
     public ApiLoginFilter apiLoginFilter(AuthenticationManager authenticationManager) throws Exception {
-        ApiLoginFilter apiLoginFilter = new ApiLoginFilter("/api/login");
+        ApiLoginFilter apiLoginFilter = new ApiLoginFilter("/api/login", new JWTUtil());
         apiLoginFilter.setAuthenticationManager(authenticationManager);
 
         return apiLoginFilter;
@@ -136,7 +133,7 @@ public class SecurityConfig {
 
     @Bean
     public ApiCheckFilter apiCheckFilter() {
-        return new ApiCheckFilter("/notes/**/*");
+        return new ApiCheckFilter("/notes/**/*", new JWTUtil());
     }
 
 }

@@ -10,6 +10,7 @@ import net.minidev.json.JSONObject;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.zerock.club.security.util.JWTUtil;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,10 +21,12 @@ public class ApiCheckFilter extends OncePerRequestFilter {
     // 앤트 패턴고 맞는지 검사하는 유틸리티.
     private AntPathMatcher antPathMatcher;
     private String pattern;
+    private JWTUtil jwtUtil;
 
-    public ApiCheckFilter(String pattern) {
+    public ApiCheckFilter(String pattern, JWTUtil jwtUtil) {
         this.antPathMatcher = new AntPathMatcher();
         this.pattern = pattern;
+        this.jwtUtil = jwtUtil;
     }
 
     @Override
