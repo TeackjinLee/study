@@ -36,6 +36,11 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
+    public JWTUtil jwtUtil() {
+        return new JWTUtil();
+    }
+
 //    @Bean
 //    public InMemoryUserDetailsManager userDetailsService() {
 //        UserDetails user = User.builder()
@@ -119,7 +124,7 @@ public class SecurityConfig {
     }
 
     public ApiLoginFilter apiLoginFilter(AuthenticationManager authenticationManager) throws Exception {
-        ApiLoginFilter apiLoginFilter = new ApiLoginFilter("/api/login", new JWTUtil());
+        ApiLoginFilter apiLoginFilter = new ApiLoginFilter("/api/login", jwtUtil());
         apiLoginFilter.setAuthenticationManager(authenticationManager);
 
         return apiLoginFilter;
@@ -133,7 +138,7 @@ public class SecurityConfig {
 
     @Bean
     public ApiCheckFilter apiCheckFilter() {
-        return new ApiCheckFilter("/notes/**/*", new JWTUtil());
+        return new ApiCheckFilter("/notes/**/*", jwtUtil());
     }
 
 }

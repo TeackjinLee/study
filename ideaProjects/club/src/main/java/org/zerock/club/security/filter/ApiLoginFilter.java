@@ -25,10 +25,6 @@ public class ApiLoginFilter extends AbstractAuthenticationProcessingFilter {
         this.jwtUtil = jwtUtil;
     }
 
-    public ApiLoginFilter(String defaultFilterProcessUrl) {
-        super(defaultFilterProcessUrl);
-    }
-
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
 
